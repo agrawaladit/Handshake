@@ -57,7 +57,9 @@ class Profile extends Component {
                 <ProfilePhoto state = {this.state}  />
               </div>
               <div className="col-xl-9">
+                <ProfileField t1="My Journey" t2="Demo" todo={this.handleEducation} key={Math.random()}/>
                 {education}
+                <ProfileField t1="Experience" t2="Demo" todo={this.handleEducation} key={Math.random()}/>
               </div>
           </div>
       </div> 

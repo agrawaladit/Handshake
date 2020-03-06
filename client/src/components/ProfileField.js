@@ -4,18 +4,12 @@ class ProfileField extends Component {
     state = {  }
     render() {
         return (
-            <div className="container mar-btm">
-                <div className="card">
-                    <div className="card-block">
-                        <h4>{this.props.t1}</h4>
-                        <h5 className="card-title">{this.props.t2}</h5>
-                        <div className="meta">
-                            <a >Friends</a>
-                        </div>
-                        <div className="card-text">
-                            Tawshif is a web designer living in Bangladesh.
-                        </div>
-                    </div>
+            <div className="card mar-btm">
+                <div className="card-body">
+                    <h5 className="card-title">{this.props.t1}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{this.props.t2}</h6>
+                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" className="card-link">Card link</a>
                 </div>
             </div>
         )
