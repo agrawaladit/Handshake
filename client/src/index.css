@@ -79,6 +79,9 @@ body {
 .mar-btm {
   margin-bottom: 15px;
 }
+.mar-rt {
+  margin-right: 15px;
+}
 .mar-btm-small {
   margin-bottom: 5px;
 }
@@ -98,4 +101,3 @@ body {
 .text-lg {
   font-size: 75%;
 }
-

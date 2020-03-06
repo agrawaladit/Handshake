@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import Handshake from '../handshake.png'
 
 class Landing extends Component {
   logOut(e) {
@@ -27,8 +28,13 @@ class Landing extends Component {
     const userLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
+          <Link to="/jobs" className="nav-link">
+            Jobs
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/profile" className="nav-link">
-            User
+            Profile
           </Link>
         </li>
         <li className="nav-item">
@@ -58,6 +64,10 @@ class Landing extends Component {
           id="navbarsExample10"
         >
           <ul className="navbar-nav">
+            <a class="navbar-brand" href="#">
+              <img src={Handshake} width="30" height="30" class="d-inline-block align-top" alt=""/>
+              Handshake
+            </a>
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 Home
