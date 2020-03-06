@@ -13,7 +13,7 @@ class Profile extends Component {
       last_name: '',
       email: '',
       school: '',
-      education: '',
+      education: [],
       errors: {}
     }
   }
@@ -47,7 +47,11 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(this.state.education)
+    const education = this.state.education !== "" ? (this.state.education.map(edu => {
+      return(<ProfileField t1="Education" t2={edu.school} todo={this.handleEducation} key={Math.random()}/>)
+    })) : (
+      {return(<ProfileField t1="Education" t2="Add School" todo={this.handleEducation}/>)}
+    );
     return (
       <div className="container">
           <div className="row">
@@ -55,9 +59,13 @@ class Profile extends Component {
                 <ProfilePhoto state = {this.state}  />
               </div>
               <div className="col-xl-9">
-                <ProfileField t1="My Journey" t2="demo" todo={this.handleEducation}/>
+                {education}
+                {/* <ProfileField t1="My Journey" t2={this.state.education} todo={this.handleEducation}/> */}
+                {/* {education.map(edu => {
+                  <ProfileField t1="Education" t2={edu.school} todo={this.handleEducation}/>
+                })} */}
                 {/* <ProfileField t1="Education" t2={this.state.education} todo={this.handleEducation}/> */}
-                <ProfileField t1="Experience" t2="demo" todo={this.handleEducation}/>
+                {/* <ProfileField t1="Experience" t2={this.state.education} todo={this.handleEducation}/> */}
               </div>
           </div>
       </div>
