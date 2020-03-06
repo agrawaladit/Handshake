@@ -79,6 +79,9 @@ body {
 .mar-btm {
   margin-bottom: 15px;
 }
+.mar-btm-small {
+  margin-bottom: 5px;
+}
 .pad-ver {
   padding-top: 15px;
   padding-bottom: 15px;

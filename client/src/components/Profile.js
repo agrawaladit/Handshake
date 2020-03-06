@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import ProfilePhoto from './ProfilePhoto'
 import ProfileField from './ProfileField'
+import ProfileSkill from './ProfileSkill'
 import {getEducation, setEducation} from './UserFunctions'
 
 class Profile extends Component {
@@ -55,6 +56,7 @@ class Profile extends Component {
           <div className="row">
               <div className="col-xl-3">
                 <ProfilePhoto state = {this.state}  />
+                <ProfileSkill/>
               </div>
               <div className="col-xl-9">
                 <ProfileField t1="My Journey" t2="Demo" todo={this.handleEducation} key={Math.random()}/>

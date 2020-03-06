@@ -8,7 +8,7 @@ class ProfilePhoto extends Component {
     render() {
         const info = this.props.state
         return (
-            <div className="col-md-12 card">
+            <div className="col-md-12 card mar-btm">
                 <div className="panel text-center">
                     <div className="panel-body">
                         <img alt="Avatar" className="img-md img-circle img-border mar-btm img-fluid rounded-circle" src={this.state.profile}/>
