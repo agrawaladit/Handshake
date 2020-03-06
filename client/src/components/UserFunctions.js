@@ -60,8 +60,8 @@ export const getEducation = id => {
   return axios
     .get('education?id='+id)
     .then(response => {
-      console.log(response.data)
-      return response.data
+      return response.data.length !== 0 ?
+      (response.data) : ([{school: "Add school"}])
     })
     .catch(err => {
       console.log(err)
