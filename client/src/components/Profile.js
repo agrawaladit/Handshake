@@ -13,7 +13,7 @@ class Profile extends Component {
       last_name: '',
       email: '',
       school: '',
-      education: "",
+      education: [],
       errors: {}
     }
   }
