@@ -56,7 +56,7 @@ class Profile extends Component {
               </div>
               <div className="col-xl-9">
                 <ProfileField t1="My Journey" t2="demo" todo={this.handleEducation}/>
-                <ProfileField t1="Education" t2={this.state.education} todo={this.handleEducation}/>
+                {/* <ProfileField t1="Education" t2={this.state.education} todo={this.handleEducation}/> */}
                 <ProfileField t1="Experience" t2="demo" todo={this.handleEducation}/>
               </div>
           </div>
