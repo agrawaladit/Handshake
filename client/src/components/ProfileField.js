@@ -34,20 +34,14 @@ class ProfileField extends Component {
     handleClick = e => {
         this.setState({
             inputClass: this.state.disable ? 'mb-2 text-muted' : 'border-0 mb-2 text-muted',
-            descClass: this.state.disable ? 'mb-2' : 'border-0 mb-2',
+            descClass: this.state.disable ? 'mb-0' : 'border-0 mb-0',
             buttonName: this.state.disable ? 'Save' : 'Edit',
             disable: !this.state.disable
         })
         this.state.disable ? console.log('edit mode on') : this.props.todo(this.state);
     }
 
-    handleSubtitle = e => {
-        this.setState({
-            subtitle: e.target.value,
-        })
-    }
-
-    handleDescription = e => {
+    handleChange = e => {
         this.setState({
             [e.target.name] : e.target.value,
         })
@@ -66,14 +60,14 @@ class ProfileField extends Component {
             <Card style={{ width: '100%' }} className="mar-btm" >
                 <Card.Body>
                     <Card.Title>{this.props.t1}</Card.Title>
-                    <input type="text" disabled={this.state.disable} value={this.state.subtitle} className={this.state.inputClass} onChange={this.handleSubtitle} placeholder={ph.subtitle} />
+                    <input type="text" name="subtitle" disabled={this.state.disable} value={this.state.subtitle} className={this.state.inputClass} onChange={this.handleChange} placeholder={ph.subtitle} />
                     <Card.Text>
-                        <input type="text" name="f1" disabled={this.state.disable} value={this.state.f1} className={this.state.descClass} onChange={this.handleDescription} placeholder={ph.f1}/><br />
-                        {"Start Date: "}<input type="date" name="f5" disabled={this.state.disable} value={this.state.f5} className={this.state.descClass} onChange={this.handleDescription}/>
-                        {"End Date: "}<input type="date" name="f6" disabled={this.state.disable} value={this.state.f6} className={this.state.descClass} onChange={this.handleDescription} /><br />
-                        <input type="text" name="f2" disabled={this.state.disable} value={this.state.f2} className={this.state.descClass} onChange={this.handleDescription} placeholder={ph.f2}/><br />
-                        <input type="text" name="f3" disabled={this.state.disable} value={this.state.f3} className={this.state.descClass} onChange={this.handleDescription} placeholder={ph.f3}/><br />
-                        <input type="text" name="f4" disabled={this.state.disable} value={this.state.f4} className={this.state.descClass} onChange={this.handleDescription} placeholder={ph.f4}/>
+                        <input type="text" name="f1" disabled={this.state.disable} value={this.state.f1} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f1}/><br />
+                        {"Start Date: "}<input type="date" name="f5" disabled={this.state.disable} value={this.state.f5} className={this.state.descClass} onChange={this.handleChange}/>
+                        {"End Date: "}<input type="date" name="f6" disabled={this.state.disable} value={this.state.f6} className={this.state.descClass} onChange={this.handleChange} /><br />
+                        <input type="text" name="f2" disabled={this.state.disable} value={this.state.f2} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f2}/><br />
+                        <input type="text" name="f3" disabled={this.state.disable} value={this.state.f3} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f3}/><br />
+                        <input type="text" name="f4" disabled={this.state.disable} value={this.state.f4} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f4}/>
                     </Card.Text>
                     <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
                 </Card.Body>

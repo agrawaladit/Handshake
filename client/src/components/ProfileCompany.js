@@ -1,80 +1,71 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import ProfilePhoto from './ProfilePhoto'
-import ProfileInfo from './ProfileInfo'
+import {Card, Button} from 'react-bootstrap'
+import Landscape from '../landscape.jpeg'
 import { getEducation, setEducation, setExperience, getExperience } from './UserFunctions'
 
 class ProfileCompany extends Component {
-  constructor() {
-    super()
-    this.state = {
-      id: '',
-      company: '',
-      email: '',
-      location: '',
-      description: '',
-      errors: {}
+    constructor() {
+        super()
+        this.state = {
+            id: '',
+            company: '',
+            email: '',
+            location: '',
+            description: '',
+            disable: true,
+            inputClass: 'border-0 mb-2',
+            descClass: 'border-0 mb-0',
+            buttonName: 'Edit',
+            errors: {}
+        }
     }
-  }
 
-  componentDidMount() {
-    const token = localStorage.usertoken
-    const decoded = jwt_decode(token)
-    this.setState({
-      id: decoded.id,
-      company: decoded.company,
-      email: decoded.email,
-      location: decoded.location,
-    })
-  }
+    componentDidMount() {
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        this.setState({
+            id: decoded.id,
+            company: decoded.company,
+            email: decoded.email,
+            location: decoded.location,
+        })
+    }
 
-//   handleEducation(user) {
-//     var tempUser = {
-//       school: user.subtitle,
-//       id: user.id,
-//       major: user.f3,
-//       location: user.f2,
-//       degree: user.f1,
-//       start_date: user.f5,
-//       end_date: user.f6,
-//       cgpa: user.f4
-//     }
-//     setEducation(tempUser).then(res => {
-//       console.log("education data added")
-//     })
-//   }
+    handleClick = e => {
+        this.setState({
+            inputClass: this.state.disable ? 'mb-2' : 'border-0 mb-2',
+            descClass: this.state.disable ? 'mb-0' : 'border-0 mb-0',
+            buttonName: this.state.disable ? 'Save' : 'Edit',
+            disable: !this.state.disable
+        })
+        this.state.disable ? console.log('edit mode on') : console.log('edit mode off');
+    }
 
-//   handleExperience(user) {
-//     var tempUser = {
-//       company: user.subtitle,
-//       id: user.id,
-//       duration: user.f3,
-//       location: user.f2,
-//       title: user.f1,
-//       start_date: user.f5,
-//       end_date: user.f6,
-//       description: user.f4
-//     }
-//     setExperience(tempUser).then(res => {
-//       console.log("experience data added")
-//     })
-//   }
+    handleChange = e => {
+        this.setState({
+            [e.target.name] : e.target.value,
+        })
+    }
 
-  render() {
-    // const education = this.state.education.map(edu => {
-    //   return(<ProfileField t1="Education" t2={edu.school} todo={this.handleEducation} key={Math.random()}/>)
-    // })
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-xl-3">
-            <ProfilePhoto state={this.state} />
-            <ProfileInfo />
-          </div>
-        </div>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <Card>
+                <Card.Img variant="top" src={Landscape} style={{ height: '200px' }}/>
+                <Card.Body>
+                    <Card.Title>
+                    <input type="text" name="company" disabled={this.state.disable} value={this.state.company} className={this.state.inputClass} onChange={this.handleChange} placeholder="Add Company Name" style={{fontSize: 50}}/>
+                    </Card.Title>
+                    <Card.Text style={{fontSize: 25}}>
+                        {"Location: "}<input type="text" name="location" disabled={this.state.disable} value={this.state.location} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Location"/><br />
+                        {"Email: "}<input type="text" name="email" disabled={this.state.disable} value={this.state.email} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Email"/><br /><br/>
+                        {"Description: "}<br/><input type="text" name="description" disabled={this.state.disable} value={this.state.description} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Description" style={{fontSize: 20}}/>
+                    </Card.Text>
+                    <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
+                </Card.Body>
+            </Card>
+        )
+    }
 }
 
 export default ProfileCompany

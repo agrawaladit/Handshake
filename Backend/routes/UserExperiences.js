@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     created: today
   }
 
-  UserExperience.create(userData)
+  UserExperience.upsert(userData)
     .then(user => {
       res.json({ status: user.company + ' Registered!' })
     })

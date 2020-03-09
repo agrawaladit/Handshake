@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
   }
   console.log(userData)
 
-  UserEducation.create(userData)
+  UserEducation.upsert(userData)
     .then(user => {
       console.log(user.location)
       res.json({ status: user.school + ' Registered!' })
