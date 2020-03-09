@@ -15,41 +15,55 @@ export const register = newUser => {
       email: newUser.email,
       password: newUser.password,
       school: newUser.school
-    }),config)
+    }), config)
     .then(response => {
-      console.log('Registered')
+      console.log('Student Registered')
+    })
+}
+
+export const registerCompany = newUser => {
+  return axios
+    .post('company/register', qs.stringify({
+      company: newUser.company,
+      email: newUser.email,
+      password: newUser.password,
+      location: newUser.location
+    }), config)
+    .then(response => {
+      console.log('Company Registered')
     })
 }
 
 export const login = user => {
-  const request = user.category === "student" ? (
-    axios
-    .post('users/login', qs.stringify({
-      email: user.email,
-      password: user.password
-    }),config)
-    .then(response => {
-      localStorage.setItem('usertoken', response.data)
-      return response.data
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  ) : (
-    axios
-    .post('users/login', qs.stringify({
-      email: user.email,
-      password: user.password
-    }),config)
-    .then(response => {
-      localStorage.setItem('usertoken', response.data)
-      return response.data
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  )
-  return request
+  if (user.category === 'student') {
+    return axios
+      .post('users/login', qs.stringify({
+        email: user.email,
+        password: user.password
+      }), config)
+      .then(response => {
+        localStorage.setItem('usertoken', response.data)
+        return response.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  if (user.category === 'employer') {
+    return axios
+      .post('company/login', qs.stringify({
+        email: user.email,
+        password: user.password
+      }), config)
+      .then(response => {
+        localStorage.setItem('usertoken', response.data)
+        return response.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  return axios.post()
 }
 
 export const setEducation = user => {
@@ -63,7 +77,7 @@ export const setEducation = user => {
       start_date: user.start_date,
       end_date: user.end_date,
       cgpa: user.cgpa
-    }),config)
+    }), config)
     .then(response => {
       console.log("Education Field Added")
     })
@@ -74,7 +88,7 @@ export const setEducation = user => {
 
 export const getEducation = id => {
   return axios
-    .get('education?id='+id)
+    .get('education?id=' + id)
     .then(response => {
       return response.data
     })
@@ -94,7 +108,7 @@ export const setExperience = user => {
       start_date: user.start_date,
       end_date: user.end_date,
       duration: user.duration,
-    }),config)
+    }), config)
     .then(response => {
       console.log("Experience Field Added")
     })
@@ -105,7 +119,7 @@ export const setExperience = user => {
 
 export const getExperience = id => {
   return axios
-    .get('experience?id='+id)
+    .get('experience?id=' + id)
     .then(response => {
       console.log(response.data)
       return response.data
