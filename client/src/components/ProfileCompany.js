@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import {Card, Button} from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import Landscape from '../landscape.jpeg'
-import { getEducation, setEducation, setExperience, getExperience } from './UserFunctions'
+import { getEducation, setEducation, setExperience, getExperience, getCompany, setCompany } from './UserFunctions'
 
 class ProfileCompany extends Component {
     constructor() {
@@ -13,6 +13,7 @@ class ProfileCompany extends Component {
             email: '',
             location: '',
             description: '',
+            info: '',
             disable: true,
             inputClass: 'border-0 mb-2',
             descClass: 'border-0 mb-0',
@@ -30,6 +31,17 @@ class ProfileCompany extends Component {
             email: decoded.email,
             location: decoded.location,
         })
+        getCompany(decoded.id).then(response => {
+            if (response) {
+                this.setState({
+                    info: response
+                })
+            }
+        })
+            .catch(error => {
+                console.log(error)
+            })
+        console.log(this.state.info)
     }
 
     handleClick = e => {
@@ -39,27 +51,39 @@ class ProfileCompany extends Component {
             buttonName: this.state.disable ? 'Save' : 'Edit',
             disable: !this.state.disable
         })
-        this.state.disable ? console.log('edit mode on') : console.log('edit mode off');
+        var tempComp = {
+            company: this.state.company,
+            id: this.state.id,
+            location: this.state.location,
+            email: this.state.email,
+            description: this.state.description
+        }
+        this.state.disable ? console.log('edit mode on') : (
+            setCompany(tempComp).then(res => {
+                console.log("Company data added")
+            })
+        );
     }
 
     handleChange = e => {
         this.setState({
-            [e.target.name] : e.target.value,
+            [e.target.name]: e.target.value,
         })
     }
 
     render() {
+        const info = this.state.info
         return (
             <Card>
-                <Card.Img variant="top" src={Landscape} style={{ height: '200px' }}/>
+                <Card.Img variant="top" src={Landscape} style={{ height: '200px' }} />
                 <Card.Body>
                     <Card.Title>
-                    <input type="text" name="company" disabled={this.state.disable} value={this.state.company} className={this.state.inputClass} onChange={this.handleChange} placeholder="Add Company Name" style={{fontSize: 50}}/>
+                        <input type="text" name="company" disabled={this.state.disable} value={this.state.company} className={this.state.inputClass} onChange={this.handleChange} placeholder="Add Company Name" style={{ fontSize: 50 }} />
                     </Card.Title>
-                    <Card.Text style={{fontSize: 25}}>
-                        {"Location: "}<input type="text" name="location" disabled={this.state.disable} value={this.state.location} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Location"/><br />
-                        {"Email: "}<input type="text" name="email" disabled={this.state.disable} value={this.state.email} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Email"/><br /><br/>
-                        {"Description: "}<br/><input type="text" name="description" disabled={this.state.disable} value={this.state.description} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Description" style={{fontSize: 20}}/>
+                    <Card.Text style={{ fontSize: 25 }}>
+                        {"Location: "}<input type="text" name="location" disabled={this.state.disable} value={this.state.location} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Location" /><br />
+                        {"Email: "}<input type="text" name="email" disabled={this.state.disable} value={this.state.email} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Email" /><br /><br />
+                        {"Description: "}<br /><input type="text" name="description" disabled={this.state.disable} value={info.description} className={this.state.descClass} onChange={this.handleChange} placeholder="Add Description" style={{ fontSize: 20 }} />
                     </Card.Text>
                     <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
                 </Card.Body>

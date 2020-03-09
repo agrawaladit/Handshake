@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Handshake from '../hslogo.png'
+import jwt_decode from 'jwt-decode'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
 class Landing extends Component {
-  logOut(e) {
+  logOut = e => {
     e.preventDefault()
     localStorage.removeItem('usertoken')
     this.props.history.push(`/`)
@@ -31,6 +32,26 @@ class Landing extends Component {
       </Nav>
     )
 
+    const companyLink = (
+      <Nav>
+        <Nav>
+          <Link to="/jobsc" className="nav-link">
+            Post Jobs
+          </Link>
+        </Nav>
+        <Nav>
+          <Link to="/profilec" className="nav-link">
+            Profile
+          </Link>
+        </Nav>
+        <Nav>
+          <Link to="" onClick={this.logOut} className="nav-link">
+            Logout
+          </Link>
+        </Nav>
+      </Nav>
+    )
+
     const userLink = (
       <Nav>
         <Nav>
@@ -44,12 +65,27 @@ class Landing extends Component {
           </Link>
         </Nav>
         <Nav>
-          <Link to="" onClick={this.logOut.bind(this)} className="nav-link">
+          <Link to="" onClick={this.logOut} className="nav-link">
             Logout
           </Link>
         </Nav>
       </Nav>
     )
+
+    try {
+      const token = localStorage.usertoken
+      const decoded = jwt_decode(token)
+      if (decoded.school) {
+        var linkSwitch = userLink
+      }
+      if (decoded.company) {
+        var linkSwitch = companyLink
+      }
+    }
+    catch(err) {
+      console.log("Login Mode");
+    }
+    
 
     return (
       <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight" style={{ width: '100%' }}>
@@ -68,7 +104,7 @@ class Landing extends Component {
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-light">Search</Button>
         </Form>
-        {localStorage.usertoken ? userLink : loginRegLink}
+        {localStorage.usertoken ? linkSwitch : loginRegLink}
       </Navbar>
     )
   }

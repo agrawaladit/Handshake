@@ -128,3 +128,32 @@ export const getExperience = id => {
       console.log(err)
     })
 }
+
+
+export const setCompany = company => {
+  return axios
+    .post('companydetails', qs.stringify({
+      company: company.company,
+      email: company.email,
+      location: company.location,
+      id: company.id,
+      description: company.description
+    }), config)
+    .then(response => {
+      console.log("Company Field Updated")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const getCompany = id => {
+  return axios
+    .get('companydetails?id=' + id)
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

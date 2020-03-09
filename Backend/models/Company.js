@@ -20,6 +20,9 @@ const Company = db.define('company',
         location: {
         type: Sequelize.STRING
         },
+        description: {
+        type: Sequelize.STRING
+        },
         created: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW

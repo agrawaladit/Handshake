@@ -18,12 +18,11 @@ router.post('/', (req, res) => {
     cgpa: req.body.cgpa,
     created: today
   }
-  console.log(userData)
 
   UserEducation.upsert(userData)
     .then(user => {
       console.log(user.location)
-      res.json({ status: user.school + ' Registered!' })
+      res.json({ status: user.school + ' Updated!' })
     })
     .catch(err => {
       res.send('error: ' + err)
