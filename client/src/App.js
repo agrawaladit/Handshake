@@ -8,6 +8,7 @@ import Register from './components/Register'
 import Profile from './components/Profile'
 import Jobs from './components/Jobs'
 import RegisterCompany from './components/RegisterCompany'
+import ProfileCompany from './components/ProfileCompany'
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/registerc" component={RegisterCompany} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/jobs" component={Jobs} />
+            <Route exact path="/profilec" component={ProfileCompany} />
           </div>
         </div>
       </Router>

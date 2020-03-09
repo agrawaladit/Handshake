@@ -57,7 +57,7 @@ export const login = user => {
       }), config)
       .then(response => {
         localStorage.setItem('usertoken', response.data)
-        return response.data
+        return response
       })
       .catch(err => {
         console.log(err)

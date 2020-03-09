@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { login } from './UserFunctions'
+import jwt_decode from 'jwt-decode'
 
 class Login extends Component {
   constructor() {
@@ -29,8 +30,13 @@ class Login extends Component {
 
     login(user)
       .then(res => {
-        if (res) {
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        if (res && decoded.school) {
           this.props.history.push(`/profile`)
+        }
+        if (res && decoded.company) {
+          this.props.history.push(`/profilec`)
         }
       })
       .catch(err => {

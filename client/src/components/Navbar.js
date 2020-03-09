@@ -12,10 +12,10 @@ class Landing extends Component {
 
   render() {
     const loginRegLink = (
-      <Nav className="mr-auto w-auto">
+      <Nav className="mr-auto" >
         <Nav>
           <Link to="/login" className="nav-link">
-            Student Login 
+            Login
           </Link>
         </Nav>
         <Nav>
@@ -52,7 +52,7 @@ class Landing extends Component {
     )
 
     return (
-      <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight">
+      <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight" style={{ width: '100%' }}>
         <Navbar>
           <Navbar.Brand href="/">
             <img
@@ -64,7 +64,7 @@ class Landing extends Component {
             />
           </Navbar.Brand>
         </Navbar>
-        <Form inline>
+        <Form inline style={{ width: '55%' }}>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-light">Search</Button>
         </Form>
