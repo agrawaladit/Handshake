@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import Login from './components/Login'
-import Register from './components/Register'
-import Profile from './components/Profile'
-import Jobs from './components/Jobs'
-import RegisterCompany from './components/RegisterCompany'
-import ProfileCompany from './components/ProfileCompany'
+import Register from './components/student/Register'
+import Profile from './components/student/Profile'
+import Jobs from './components/student/Jobs'
+import RegisterCompany from './components/company/RegisterCompany'
+import ProfileCompany from './components/company/ProfileCompany'
 
 class App extends Component {
   render() {

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { registerCompany } from './UserFunctions'
+import { register } from '../UserFunctions'
 
-class RegisterCompany extends Component {
+class Register extends Component {
   constructor() {
     super()
     this.state = {
-      company: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
-      location: '',
+      school: '',
       errors: {}
     }
 
@@ -23,15 +24,16 @@ class RegisterCompany extends Component {
     e.preventDefault()
 
     const newUser = {
-      company: this.state.company,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password,
-      location: this.state.location
+      school: this.state.school
     }
 
     console.log(newUser)
 
-    registerCompany(newUser).then(res => {
+    register(newUser).then(res => {
       this.props.history.push(`/login`)
     })
   }
@@ -44,13 +46,25 @@ class RegisterCompany extends Component {
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Register</h1>
               <div className="form-group">
-                <label htmlFor="company">Company name</label>
+                <label htmlFor="name">First name</label>
                 <input
                   type="text"
                   className="form-control"
-                  name="company"
-                  placeholder="Enter your Company Name"
-                  value={this.state.company}
+                  name="first_name"
+                  placeholder="Enter your first name"
+                  value={this.state.first_name}
+                  onChange={this.onChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">Last name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="last_name"
+                  placeholder="Enter your lastname name"
+                  value={this.state.last_name}
                   onChange={this.onChange}
                   required
                 />
@@ -68,13 +82,13 @@ class RegisterCompany extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="location">Location</label>
+                <label htmlFor="school">School</label>
                 <input
                   type="text"
                   className="form-control"
-                  name="location"
-                  placeholder="Enter Location"
-                  value={this.state.location}
+                  name="school"
+                  placeholder="Enter school"
+                  value={this.state.school}
                   onChange={this.onChange}
                   required
                 />
@@ -105,4 +119,4 @@ class RegisterCompany extends Component {
   }
 }
 
-export default RegisterCompany
+export default Register

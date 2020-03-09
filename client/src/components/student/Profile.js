@@ -4,7 +4,7 @@ import ProfilePhoto from './ProfilePhoto'
 import ProfileField from './ProfileField'
 import ProfileSkill from './ProfileSkill'
 import ProfileInfo from './ProfileInfo'
-import { getEducation, setEducation, setExperience, getExperience } from './UserFunctions'
+import { getEducation, setEducation, setExperience, getExperience } from '../UserFunctions'
 
 class Profile extends Component {
   constructor() {

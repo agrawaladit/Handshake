@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Profile from '../profile.png'
+import Profile from '../../profile.png'
 
 class ProfilePhoto extends Component {
     state = { 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { Card, Button } from 'react-bootstrap'
-import Landscape from '../landscape.jpeg'
-import { getEducation, setEducation, setExperience, getExperience, getCompany, setCompany } from './UserFunctions'
+import Landscape from '../../landscape.jpeg'
+import { getEducation, setEducation, setExperience, getExperience, getCompany, setCompany } from '../UserFunctions'
 
 class ProfileCompany extends Component {
     constructor() {
