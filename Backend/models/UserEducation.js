@@ -13,14 +13,20 @@ const UserEducation = db.define('user_education',
         major: {
         type: Sequelize.STRING
         },
-        minor: {
+        location: {
         type: Sequelize.STRING
         },
         start_date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
         },
         end_date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
+        },
+        degree: {
+        type: Sequelize.STRING
+        },
+        cgpa: {
+        type: Sequelize.STRING
         },
         created: {
         type: Sequelize.DATE,

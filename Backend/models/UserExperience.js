@@ -10,17 +10,23 @@ const UserExperience = db.define('user_experience',
         company: {
         type: Sequelize.STRING
         },
+        title: {
+        type: Sequelize.STRING
+        },
         location: {
         type: Sequelize.STRING
         },
         description: {
         type: Sequelize.STRING
         },
+        duration: {
+        type: Sequelize.STRING
+        },
         start_date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
         },
         end_date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
         },
         created: {
         type: Sequelize.DATE,

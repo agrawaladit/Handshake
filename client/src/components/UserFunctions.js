@@ -43,13 +43,14 @@ export const setEducation = user => {
       school: user.school,
       id: user.id,
       major: user.major,
-      minor: user.minor,
+      location: user.location,
+      degree: user.degree,
       start_date: user.start_date,
       end_date: user.end_date,
+      cgpa: user.cgpa
     }),config)
     .then(response => {
       console.log("Education Field Added")
-      return response.data
     })
     .catch(err => {
       console.log(err)
@@ -60,8 +61,40 @@ export const getEducation = id => {
   return axios
     .get('education?id='+id)
     .then(response => {
-      return response.data.length !== 0 ?
-      (response.data) : ([{school: "Add school"}])
+      console.log(response.data)
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setExperience = user => {
+  return axios
+    .post('experience', qs.stringify({
+      company: user.company,
+      title: user.title,
+      id: user.id,
+      description: user.description,
+      location: user.location,
+      start_date: user.start_date,
+      end_date: user.end_date,
+      duration: user.duration,
+    }),config)
+    .then(response => {
+      console.log("Experience Field Added")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const getExperience = id => {
+  return axios
+    .get('experience?id='+id)
+    .then(response => {
+      console.log(response.data)
+      return response.data
     })
     .catch(err => {
       console.log(err)

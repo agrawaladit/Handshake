@@ -41,6 +41,7 @@ router.post('/register', (req, res) => {
             userData.password = hash
             User.create(userData)
               .then(user => {
+                console.log(user.email)
                 res.json({ status: user.email + 'Registered!' })
               })
               .catch(err => {

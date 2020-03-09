@@ -12,13 +12,13 @@ export default class JobsRight extends Component {
                     <p className="font-weight-light text-secondary mar-rt">Unpaid</p>
                     <p className="font-weight-light text-secondary mar-rt">Date Posted</p>
                 </div>
-                <br/>
+                <br />
                 <button type="button" class="btn btn-success mar-btm">Apply</button>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <h3 className="font-weight-bold">Job Description</h3>
                 <p className="font-weight-light">The Paragraphs module allows content creators to choose which kinds of paragraphs they want to place on the page, and the order in which they want to place them. They can do all of this through the familiar node edit screen. There is no need to resort to code, the dreaded block placement config screen or Panelizer overrides. They just use node edit form where all content is available to them in one place.</p>
-                
+
             </div>
         )
     }

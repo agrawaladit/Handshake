@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import Handshake from '../handshake.png'
+import Handshake from '../hslogo.png'
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
 class Landing extends Component {
   logOut(e) {
@@ -11,72 +12,59 @@ class Landing extends Component {
 
   render() {
     const loginRegLink = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
+      <Nav className="mr-auto w-auto">
+        <Nav>
           <Link to="/login" className="nav-link">
             Login
           </Link>
-        </li>
-        <li className="nav-item">
+        </Nav>
+        <Nav>
           <Link to="/register" className="nav-link">
             Register
           </Link>
-        </li>
-      </ul>
+        </Nav>
+      </Nav>
     )
 
     const userLink = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
+      <Nav>
+        <Nav>
           <Link to="/jobs" className="nav-link">
             Jobs
           </Link>
-        </li>
-        <li className="nav-item">
+        </Nav>
+        <Nav>
           <Link to="/profile" className="nav-link">
             Profile
           </Link>
-        </li>
-        <li className="nav-item">
-          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+        </Nav>
+        <Nav>
+          <Link to="" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
-          </a>
-        </li>
-      </ul>
+          </Link>
+        </Nav>
+      </Nav>
     )
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExample10"
-          aria-controls="navbarsExample10"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
-
-        <div
-          className="collapse navbar-collapse justify-content-md-center"
-          id="navbarsExample10"
-        >
-          <ul className="navbar-nav">
-            <a class="navbar-brand" href="#">
-              <img src={Handshake} width="30" height="30" class="d-inline-block align-top" alt=""/>
-              Handshake
-            </a>
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-          </ul>
-          {localStorage.usertoken ? userLink : loginRegLink}
-        </div>
-      </nav>
+      <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight">
+        <Navbar>
+          <Navbar.Brand href="/">
+            <img
+              src={Handshake}
+              width="200"
+              height="30"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+          </Navbar.Brand>
+        </Navbar>
+        <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-light">Search</Button>
+        </Form>
+        {localStorage.usertoken ? userLink : loginRegLink}
+      </Navbar>
     )
   }
 }

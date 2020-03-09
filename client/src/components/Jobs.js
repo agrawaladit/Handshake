@@ -8,7 +8,7 @@ export default class Jobs extends Component {
 
     render() {
         var styles = {
-            backgroundColor: 'DEDEDE',
+            backgroundColor: '#DEDEDE',
         };
         return (
             <div>

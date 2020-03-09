@@ -9,11 +9,13 @@ router.post('/', (req, res) => {
     const today = new Date()
     const userData = {
       company: req.body.company,
+      title: req.body.title,
       id: req.body.id,
       description: req.body.description,
       location: req.body.location,
       start_date: req.body.start_date,
       end_date: req.body.end_date,
+      duration: req.body.duration,
       created: today
     }
 

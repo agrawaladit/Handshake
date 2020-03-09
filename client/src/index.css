@@ -63,6 +63,15 @@ body {
   width: 64px;
   height: 64px;
 }
+
+input[type=text]:disabled {
+  background: #ffffff;
+}
+
+input[type=date]:disabled {
+  background: #ffffff;
+}
+
 .widget-bg {
   position: absolute;
   top: 0;
