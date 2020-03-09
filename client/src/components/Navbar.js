@@ -15,12 +15,22 @@ class Landing extends Component {
       <Nav className="mr-auto w-auto">
         <Nav>
           <Link to="/login" className="nav-link">
-            Login
+            Student Login 
           </Link>
         </Nav>
         <Nav>
           <Link to="/register" className="nav-link">
-            Register
+            Student Register
+          </Link>
+        </Nav>
+        <Nav>
+          <Link to="/loginc" className="nav-link">
+            Company Login 
+          </Link>
+        </Nav>
+        <Nav>
+          <Link to="/registerc" className="nav-link">
+            Company Register
           </Link>
         </Nav>
       </Nav>

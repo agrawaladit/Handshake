@@ -7,6 +7,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      category: '',
       errors: {}
     }
 
@@ -22,7 +23,8 @@ class Login extends Component {
 
     const user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      category: this.state.category
     }
 
     login(user).then(res => {
@@ -60,6 +62,19 @@ class Login extends Component {
                   value={this.state.password}
                   onChange={this.onChange}
                 />
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <select
+                  className="form-control"
+                  name="category"
+                  value={this.state.category}
+                  onChange={this.onChange}
+                  required>
+                  <option value="" disabled hidden>Choose category</option>
+                  <option value="student">Student</option>
+                  <option value="employer">Employer</option>
+                </select>
               </div>
               <button
                 type="submit"

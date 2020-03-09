@@ -14,8 +14,7 @@ export const register = newUser => {
       last_name: newUser.last_name,
       email: newUser.email,
       password: newUser.password,
-      school: newUser.school,
-      category: newUser.category
+      school: newUser.school
     }),config)
     .then(response => {
       console.log('Registered')
@@ -23,7 +22,8 @@ export const register = newUser => {
 }
 
 export const login = user => {
-  return axios
+  const request = user.category === "student" ? (
+    axios
     .post('users/login', qs.stringify({
       email: user.email,
       password: user.password
@@ -35,6 +35,21 @@ export const login = user => {
     .catch(err => {
       console.log(err)
     })
+  ) : (
+    axios
+    .post('users/login', qs.stringify({
+      email: user.email,
+      password: user.password
+    }),config)
+    .then(response => {
+      localStorage.setItem('usertoken', response.data)
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  )
+  return request
 }
 
 export const setEducation = user => {
@@ -61,7 +76,6 @@ export const getEducation = id => {
   return axios
     .get('education?id='+id)
     .then(response => {
-      console.log(response.data)
       return response.data
     })
     .catch(err => {

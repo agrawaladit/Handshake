@@ -7,6 +7,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import Jobs from './components/Jobs'
+import LoginCompany from './components/LoginCompany'
+import RegisterCompany from './components/RegisterCompany'
 
 class App extends Component {
   render() {
@@ -18,6 +20,8 @@ class App extends Component {
           <div className="container">
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/registerc" component={RegisterCompany} />
+            <Route exact path="/loginc" component={LoginCompany} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/jobs" component={Jobs} />
           </div>

@@ -10,7 +10,6 @@ class Register extends Component {
       email: '',
       password: '',
       school: '',
-      category: '',
       errors: {}
     }
 
@@ -29,8 +28,7 @@ class Register extends Component {
       last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password,
-      school: this.state.school,
-      category: this.state.category
+      school: this.state.school
     }
 
     console.log(newUser)
@@ -94,19 +92,6 @@ class Register extends Component {
                   onChange={this.onChange}
                   required
                 />
-              </div>
-              <div className="form-group">
-                <label htmlFor="category">Category</label>
-                <select
-                  className="form-control"
-                  name="category"
-                  value={this.state.category}
-                  onChange={this.onChange}
-                  required>
-                  <option value="" disabled hidden>Choose category</option>
-                  <option value="student">Student</option>
-                  <option value="employer">Employer</option>
-                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>

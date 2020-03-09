@@ -3,14 +3,14 @@ import { Card, Button, Row } from 'react-bootstrap'
 
 class ProfileField extends Component {
     state = {
-        subtitle: this.props.t2,
-        id: this.props.id,
-        f1: this.props.f1,
-        f2: this.props.f2,
-        f3: this.props.f3,
-        f4: this.props.f4,
-        f5: this.props.f5,
-        f6: this.props.f6,
+        subtitle: "",
+        id: "",
+        f1: "",
+        f2: "",
+        f3: "",
+        f4: "",
+        f5: "",
+        f6: "",
         disable: true,
         inputClass: 'border-0 mb-2 text-muted',
         descClass: 'border-0 mb-0',
@@ -28,7 +28,6 @@ class ProfileField extends Component {
             f5: nextProps.f5,
             f6: nextProps.f6,
         })
-        console.log(this.state)
     }
     
 

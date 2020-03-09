@@ -93,7 +93,6 @@ class Profile extends Component {
     // })
     const ed = this.state.education
     const ex = this.state.experience
-    console.log(ed.school);
     return (
       <div className="container">
         <div className="row">

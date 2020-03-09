@@ -25,7 +25,6 @@ router.post('/register', (req, res) => {
       email: req.body.email,
       password: req.body.password,
       school: req.body.school,
-      category: req.body.category,
       created: today
     }
   
