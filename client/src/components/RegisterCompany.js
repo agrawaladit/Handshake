@@ -26,7 +26,7 @@ class RegisterCompany extends Component {
       company: this.state.company,
       email: this.state.email,
       password: this.state.password,
-      location: this.state.school
+      location: this.state.location
     }
 
     console.log(newUser)
@@ -74,7 +74,7 @@ class RegisterCompany extends Component {
                   className="form-control"
                   name="location"
                   placeholder="Enter Location"
-                  value={this.state.school}
+                  value={this.state.location}
                   onChange={this.onChange}
                   required
                 />

@@ -23,7 +23,7 @@ export const register = newUser => {
 
 export const registerCompany = newUser => {
   return axios
-    .post('company/register', qs.stringify({
+    .post('companies/register', qs.stringify({
       company: newUser.company,
       email: newUser.email,
       password: newUser.password,
@@ -51,7 +51,7 @@ export const login = user => {
   }
   if (user.category === 'employer') {
     return axios
-      .post('company/login', qs.stringify({
+      .post('companies/login', qs.stringify({
         email: user.email,
         password: user.password
       }), config)

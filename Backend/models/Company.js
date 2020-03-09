@@ -1,17 +1,14 @@
 const Sequelize = require('sequelize')
 const db = require('../config/database')
 
-const User = db.define('user',
+const Company = db.define('company',
     {
         id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
         },
-        first_name: {
-        type: Sequelize.STRING
-        },
-        last_name: {
+        company: {
         type: Sequelize.STRING
         },
         email: {
@@ -20,7 +17,7 @@ const User = db.define('user',
         password: {
         type: Sequelize.STRING
         },
-        school: {
+        location: {
         type: Sequelize.STRING
         },
         created: {
@@ -33,4 +30,4 @@ const User = db.define('user',
     }
 )
 
-module.exports = User
+module.exports = Company

@@ -24,11 +24,6 @@ class Landing extends Component {
           </Link>
         </Nav>
         <Nav>
-          <Link to="/loginc" className="nav-link">
-            Company Login 
-          </Link>
-        </Nav>
-        <Nav>
           <Link to="/registerc" className="nav-link">
             Company Register
           </Link>

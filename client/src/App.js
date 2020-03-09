@@ -7,7 +7,6 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import Jobs from './components/Jobs'
-import LoginCompany from './components/LoginCompany'
 import RegisterCompany from './components/RegisterCompany'
 
 class App extends Component {

@@ -20,6 +20,7 @@ app.use(bodyparser.urlencoded({
   }));
 
 app.use('/users', require('./routes/Users'))
+app.use('/companies', require('./routes/Companies'))
 app.use('/education', require('./routes/UserEducations'))
 app.use('/experience', require('./routes/UserExperiences'))
 
