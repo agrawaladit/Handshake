@@ -10,6 +10,7 @@ export default class Jobs extends Component {
 
     state = {
         jobs: '',
+        student_id: '',
         mode: true
     }
 
@@ -29,7 +30,11 @@ export default class Jobs extends Component {
         const decoded = jwt_decode(token)
 
         if (decoded.school) {
-            this.setState({ mode: true })
+            console.log(decoded)
+            this.setState({ 
+                mode: true,
+                student_id: decoded.id
+            })
         }
         if (decoded.company) {
             this.setState({ mode: false })
@@ -58,7 +63,7 @@ export default class Jobs extends Component {
                 this.state.jobs.map(job => {
                     return (
                         <div class="tab-pane fade" id={job.id} role="tabpanel" aria-labelledby="tab">
-                            <JobsRight job={job} />
+                            <JobsRight job={job} student={this.state.student_id}/>
                         </div>
                     )
                 })

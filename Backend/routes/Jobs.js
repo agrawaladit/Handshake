@@ -36,27 +36,4 @@ router.get('/',(req,res) => Job.findAll()
     .catch(error => console.log(error))
     )
 
-// router.get('/', (req, res) => {
-
-//   initJob = {
-//     id: req.query.id,
-//     company: ''
-//   }
-//   Job.findOne({
-//     where: {
-//       id: req.query.id
-//     }
-//   })
-//     .then(job => {
-//       if (job) {
-//         res.send(job)
-//       } else {
-//         res.send(initJob)
-//       }
-//     })
-//     .catch(err => {
-//       res.send('error: ' + err)
-//     })
-// })
-
 module.exports = router

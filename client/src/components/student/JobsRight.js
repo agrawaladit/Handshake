@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
+import { setApplications } from '../UserFunctions'
 
 export default class JobsRight extends Component {
 
+    state = {
+        student_id: '',
+        job_id: '',
+        status: ''
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return {
+            student_id: props.student,
+            job_id: props.job.id,
+            status: 'pending'
+        }
+    }
+
+
     onClick = e => {
-        
+        setApplications(this.state).then(res => {
+            console.log("Applied")
+          })
     }
 
     render() {
@@ -15,8 +33,8 @@ export default class JobsRight extends Component {
                 <div className="row pad-all">
                     <p className="font-weight-light text-secondary mar-rt">{job.category}</p>
                     <p className="font-weight-light text-secondary mar-rt">{job.location}</p>
-                    <p className="font-weight-light text-secondary mar-rt">{["Salary : "+job.salary+" $"]}</p>
-                    <p className="font-weight-light text-secondary mar-rt">{["Posted : "+job.date]}</p>
+                    <p className="font-weight-light text-secondary mar-rt">{["Salary : " + job.salary + " $"]}</p>
+                    <p className="font-weight-light text-secondary mar-rt">{["Posted : " + job.date]}</p>
                 </div>
                 <button type="button" class="btn btn-success mar-btm" onClick={this.onClick}>Apply</button>
                 <br />
