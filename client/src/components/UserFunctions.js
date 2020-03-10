@@ -158,9 +158,9 @@ export const getCompany = id => {
     })
 }
 
-export const getJobs = id => {
+export const getJobs = () => {
   return axios
-    .get('jobs?id=' + id)
+    .get('jobs')
     .then(response => {
       return response.data
     })

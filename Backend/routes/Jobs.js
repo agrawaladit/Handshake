@@ -22,7 +22,6 @@ router.post('/', (req, res) => {
 
   Job.create(userData)
     .then(user => {
-      console.log(user.location)
       res.json({ status: user.school + ' Updated!' })
     })
     .catch(err => {
@@ -30,27 +29,34 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/', (req, res) => {
+router.get('/',(req,res) => Job.findAll()
+    .then(jobs => {
+        res.send(jobs)
+    })
+    .catch(error => console.log(error))
+    )
 
-  initJob = {
-    id: req.query.id,
-    company: ''
-  }
-  Job.findOne({
-    where: {
-      id: req.query.id
-    }
-  })
-    .then(job => {
-      if (job) {
-        res.send(job)
-      } else {
-        res.send(initJob)
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
-})
+// router.get('/', (req, res) => {
+
+//   initJob = {
+//     id: req.query.id,
+//     company: ''
+//   }
+//   Job.findOne({
+//     where: {
+//       id: req.query.id
+//     }
+//   })
+//     .then(job => {
+//       if (job) {
+//         res.send(job)
+//       } else {
+//         res.send(initJob)
+//       }
+//     })
+//     .catch(err => {
+//       res.send('error: ' + err)
+//     })
+// })
 
 module.exports = router

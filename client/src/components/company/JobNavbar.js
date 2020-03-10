@@ -15,7 +15,7 @@ export default class JobNavbar extends Component {
                         </Link>
                     </Nav>
                     <Nav>
-                        <Link to="/view" className="nav-link">
+                        <Link to="/jobs" className="nav-link">
                             View
                     </Link>
                     </Nav>

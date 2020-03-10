@@ -29,6 +29,9 @@ const Job = db.define('job_posting',
         description: {
         type: Sequelize.STRING
         },
+        category: {
+        type: Sequelize.STRING
+        },
         created: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW

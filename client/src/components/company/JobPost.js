@@ -37,6 +37,7 @@ export default class JobPost extends Component {
     }
 
     onChange = e => {
+        
         this.setState({ [e.target.name]: e.target.value })
     }
 
@@ -67,6 +68,7 @@ export default class JobPost extends Component {
                     <Form.Group as={Col} controlId="formCategory" className="m-sm-4">
                         <Form.Label>Category</Form.Label>
                         <Form.Control as="select" name='category' onChange={this.onChange} value={this.state.category}>
+                            <option value="" disabled hidden>Choose category</option>
                             <option>Full Time</option>
                             <option>Part Time</option>
                             <option>Intern</option>
