@@ -157,3 +157,33 @@ export const getCompany = id => {
       console.log(err)
     })
 }
+
+export const getJobs = id => {
+  return axios
+    .get('jobs?id=' + id)
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setJobs = job => {
+  return axios
+    .post('jobs', qs.stringify({
+      company: job.company,
+      title: job.title,
+      description: job.description,
+      location: job.location,
+      deadline: job.deadline,
+      category: job.category,
+      salary: job.salary
+    }), config)
+    .then(response => {
+      console.log("Job Field Added")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

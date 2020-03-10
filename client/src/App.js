@@ -9,6 +9,7 @@ import Profile from './components/student/Profile'
 import Jobs from './components/student/Jobs'
 import RegisterCompany from './components/company/RegisterCompany'
 import ProfileCompany from './components/company/ProfileCompany'
+import JobsCompany from './components/company/JobsCompany'
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/jobs" component={Jobs} />
             <Route exact path="/profilec" component={ProfileCompany} />
+            <Route exact path="/jobsc" component={JobsCompany} />
           </div>
         </div>
       </Router>

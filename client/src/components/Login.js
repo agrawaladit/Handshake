@@ -32,7 +32,6 @@ class Login extends Component {
       .then(res => {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        console.log(decoded);
         
         if (res && decoded.school) {
           this.props.history.push(`/profile`)
