@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 export default class JobsRight extends Component {
+
+    onClick = e => {
+        
+    }
+
     render() {
         var job = this.props.job
         return (
@@ -13,7 +18,7 @@ export default class JobsRight extends Component {
                     <p className="font-weight-light text-secondary mar-rt">{["Salary : "+job.salary+" $"]}</p>
                     <p className="font-weight-light text-secondary mar-rt">{["Posted : "+job.date]}</p>
                 </div>
-                <button type="button" class="btn btn-success mar-btm">Apply</button>
+                <button type="button" class="btn btn-success mar-btm" onClick={this.onClick}>Apply</button>
                 <br />
                 <br />
                 <h3 className="font-weight-bold">Job Description</h3>

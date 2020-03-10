@@ -187,3 +187,29 @@ export const setJobs = job => {
       console.log(err)
     })
 }
+
+export const getApplications = () => {
+  return axios
+    .get('applications')
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setApplications = app => {
+  return axios
+    .post('applications', qs.stringify({
+      student_id : app.student_id,
+      job_id : app.job_id,
+      status: app.status
+    }), config)
+    .then(response => {
+      console.log("Job Applied")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

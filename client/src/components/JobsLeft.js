@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import handshake from '../../handshake.png'
+import handshake from '../handshake.png'
 import { Card, Button, Row, Col, Container } from 'react-bootstrap'
 
 export default class JobsLeft extends Component {
