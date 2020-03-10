@@ -9,8 +9,10 @@ import jwt_decode from 'jwt-decode'
 export default class Jobs extends Component {
 
     state = {
-        jobs: '',
+        jobs: [],
         student_id: '',
+        student_name: '',
+        company: '',
         mode: true
     }
 
@@ -33,18 +35,29 @@ export default class Jobs extends Component {
             console.log(decoded)
             this.setState({ 
                 mode: true,
-                student_id: decoded.id
+                student_id: decoded.id,
+                student_name: decoded.first_name + " " + decoded.last_name
             })
         }
         if (decoded.company) {
-            this.setState({ mode: false })
+            this.setState({ 
+                mode: false,
+                company: decoded.company
+            })
         }
     }
 
 
     render() {
+        const jobs = this.state.mode ? this.state.jobs : (this.state.jobs.filter(
+            (job) => {
+                console.log(job.company)
+                return job.company === this.state.company
+            }
+        ))
+
         try {
-            var jobsLeftValues = this.state.jobs.map(job => {
+            var jobsLeftValues = jobs.map(job => {
                 var href = ["#" + job.id]
                 return (
                     <a class="nav-link border" id="tab" data-toggle="pill" href={href} role="tab" aria-controls={job.id} aria-selected="false">
@@ -63,7 +76,7 @@ export default class Jobs extends Component {
                 this.state.jobs.map(job => {
                     return (
                         <div class="tab-pane fade" id={job.id} role="tabpanel" aria-labelledby="tab">
-                            <JobsRight job={job} student={this.state.student_id}/>
+                            <JobsRight job={job} sid={this.state.student_id} sname={this.state.student_name}/>
                         </div>
                     )
                 })

@@ -204,10 +204,25 @@ export const setApplications = app => {
     .post('applications', qs.stringify({
       student_id : app.student_id,
       job_id : app.job_id,
+      student_name : app.student_name,
       status: app.status
     }), config)
     .then(response => {
       console.log("Job Applied")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setStatus = (id,status) => {
+  return axios
+    .post('applications/update', qs.stringify({
+      id: id,
+      status: status 
+    }), config)
+    .then(response => {
+      console.log("Status Updated")
     })
     .catch(err => {
       console.log(err)

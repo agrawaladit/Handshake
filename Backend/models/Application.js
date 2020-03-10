@@ -14,6 +14,9 @@ const Application = db.define('job_application',
         job_id: {
         type: Sequelize.INTEGER
         },
+        student_name: {
+        type: Sequelize.STRING
+        },
         status: {
         type: Sequelize.STRING
         },

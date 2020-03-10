@@ -17,17 +17,17 @@ class ProfileField extends Component {
         buttonName: 'Edit'
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            subtitle: nextProps.t2,
-            id: nextProps.id,
-            f1: nextProps.f1,
-            f2: nextProps.f2,
-            f3: nextProps.f3,
-            f4: nextProps.f4,
-            f5: nextProps.f5,
-            f6: nextProps.f6,
-        })
+    static getDerivedStateFromProps(props, state) {
+        return {
+            subtitle: props.t2,
+            id: props.id,
+            f1: props.f1,
+            f2: props.f2,
+            f3: props.f3,
+            f4: props.f4,
+            f5: props.f5,
+            f6: props.f6,
+        }
     }
     
 
