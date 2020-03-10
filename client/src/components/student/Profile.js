@@ -4,7 +4,7 @@ import ProfilePhoto from './ProfilePhoto'
 import ProfileField from './ProfileField'
 import ProfileSkill from './ProfileSkill'
 import ProfileInfo from './ProfileInfo'
-import { getEducation, setEducation, setExperience, getExperience } from '../UserFunctions'
+import { getEducation, setEducation, setExperience, getExperience, getProfile } from '../UserFunctions'
 
 class Profile extends Component {
   constructor() {
@@ -17,21 +17,35 @@ class Profile extends Component {
       school: '',
       education: '',
       experience: '',
+      student: '',
       errors: {}
     }
   }
 
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      id: props.id
+    }
+  }
+
+
   componentDidMount() {
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
+    const student = decoded.school ? decoded : (
+      getProfile(this.state.id).then(res => {
+        return res
+      })
+    )
     this.setState({
-      id: decoded.id,
-      first_name: decoded.first_name,
-      last_name: decoded.last_name,
-      email: decoded.email,
-      school: decoded.school,
+      id: student.id,
+      first_name: student.first_name,
+      last_name: student.last_name,
+      email: student.email,
+      school: student.school,
     })
-    getEducation(decoded.id).then(response => {
+    getEducation(student.id).then(response => {
       if (response) {
         this.setState({
           education: response
@@ -42,7 +56,7 @@ class Profile extends Component {
         console.log(error)
       })
 
-    getExperience(decoded.id).then(response => {
+    getExperience(student.id).then(response => {
       if (response) {
         this.setState({
           experience: response

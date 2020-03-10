@@ -97,6 +97,17 @@ export const getEducation = id => {
     })
 }
 
+export const getProfile = id => {
+  return axios
+    .get('users/profile?id=' + id)
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const setExperience = user => {
   return axios
     .post('experience', qs.stringify({

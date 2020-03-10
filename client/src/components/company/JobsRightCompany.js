@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Accordion, Card, Form } from "react-bootstrap";
+import { Accordion, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { getApplications, setStatus } from '../UserFunctions'
+import {Link, withRouter} from 'react-router-dom'
 
-export default class JobsRightCompany extends Component {
+class JobsRightCompany extends Component {
 
     state = {
         applications: '',
@@ -33,12 +34,16 @@ export default class JobsRightCompany extends Component {
             })
     }
 
-    onChange = e => {   
+    onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
-        setStatus(e.target.id,e.target.value).then(
-            console.log("status changed")   
+        setStatus(e.target.id, e.target.value).then(
+            console.log("status changed")
         )
     }
+
+    onClick = e => {
+        <Link to="/profile" className="nav-link"/>
+    } 
 
     render() {
         try {
@@ -51,12 +56,19 @@ export default class JobsRightCompany extends Component {
                         <Accordion.Collapse eventKey={application.student_id}>
                             <Card.Body>
                                 <Form.Label>Current Status : {application.status}</Form.Label>
-                                <Form.Control as="select" name='category' onChange={this.onChange} id={application.id} value={this.state.category}>
-                                    <option value="" hidden>Change Status</option>
-                                    <option>Pending</option>
-                                    <option>Reviewed</option>
-                                    <option>Declined</option>
-                                </Form.Control>
+                                <Row>
+                                    <Col>
+                                        <Form.Control as="select" name='category' onChange={this.onChange} id={application.id} value={this.state.category}>
+                                            <option value="" hidden>Change Status</option>
+                                            <option>Pending</option>
+                                            <option>Reviewed</option>
+                                            <option>Declined</option>
+                                        </Form.Control>
+                                    </Col>
+                                    <Col>
+                                        <Button variant="primary" onClick={this.onClick}>Go to Profile</Button>
+                                    </Col>
+                                </Row>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
@@ -74,3 +86,5 @@ export default class JobsRightCompany extends Component {
         )
     }
 }
+
+export default withRouter(JobsRightCompany)
