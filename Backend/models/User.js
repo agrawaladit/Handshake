@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../config/database')
+const Application = require('../models/Application')
 
 const User = db.define('user',
     {
@@ -32,5 +33,6 @@ const User = db.define('user',
         timestamps: false
     }
 )
+
 
 module.exports = User

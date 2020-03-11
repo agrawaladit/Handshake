@@ -3,6 +3,7 @@ const router = express.Router();
 const cors = require('cors')
 const Application = require('../models/Application')
 
+
 router.use(cors())
 
 router.post('/update', (req, res) => {

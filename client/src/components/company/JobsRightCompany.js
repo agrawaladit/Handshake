@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Accordion, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { getApplications, setStatus } from '../UserFunctions'
-import {Link, withRouter} from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class JobsRightCompany extends Component {
 
@@ -42,8 +42,8 @@ class JobsRightCompany extends Component {
     }
 
     onClick = e => {
-        <Link to="/profile" className="nav-link"/>
-    } 
+        <Link to="/profile" className="nav-link" />
+    }
 
     render() {
         try {
@@ -66,7 +66,9 @@ class JobsRightCompany extends Component {
                                         </Form.Control>
                                     </Col>
                                     <Col>
-                                        <Button variant="primary" onClick={this.onClick}>Go to Profile</Button>
+                                        <Link to="/profile" className="nav-link">
+                                            <Button variant="primary" >Go to Profile</Button>
+                                        </Link>
                                     </Col>
                                 </Row>
                             </Card.Body>
