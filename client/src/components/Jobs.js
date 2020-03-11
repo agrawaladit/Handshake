@@ -5,6 +5,7 @@ import JobsRightCompany from './company/JobsRightCompany'
 import JobsTop from './student/JobsTop'
 import { getJobs } from './UserFunctions'
 import jwt_decode from 'jwt-decode'
+import { Form, Col, Tab, Row, Nav } from 'react-bootstrap'
 
 export default class Jobs extends Component {
 
@@ -13,7 +14,17 @@ export default class Jobs extends Component {
         student_id: '',
         student_name: '',
         company: '',
+        search_company: '',
+        search_title: '',
+        search_location: '',
+        search_category: '',
         mode: true
+    }
+
+    updateSearch = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     componentDidMount() {
@@ -33,14 +44,14 @@ export default class Jobs extends Component {
 
         if (decoded.school) {
             console.log(decoded)
-            this.setState({ 
+            this.setState({
                 mode: true,
                 student_id: decoded.id,
                 student_name: decoded.first_name + " " + decoded.last_name
             })
         }
         if (decoded.company) {
-            this.setState({ 
+            this.setState({
                 mode: false,
                 company: decoded.company
             })
@@ -49,20 +60,33 @@ export default class Jobs extends Component {
 
 
     render() {
-        const jobs = this.state.mode ? this.state.jobs : (this.state.jobs.filter(
-            (job) => {
-                console.log(job.company)
-                return job.company === this.state.company
-            }
-        ))
+        const jobs = this.state.mode ? (
+            this.state.jobs.filter(
+                job => {
+                    return ((job.company.toLowerCase().indexOf(this.state.search_company.toLowerCase()) !== -1) &&
+                        (job.title.toLowerCase().indexOf(this.state.search_title.toLowerCase()) !== -1) &&
+                        (job.location.toLowerCase().indexOf(this.state.search_location.toLowerCase()) !== -1) &&
+                        (job.category.indexOf(this.state.search_category) !== -1))
+                }
+            )
+        ) : (
+                this.state.jobs.filter(
+                    job => {
+                        return (job.company === this.state.company)
+                    }
+                )
+            )
 
         try {
             var jobsLeftValues = jobs.map(job => {
                 var href = ["#" + job.id]
                 return (
-                    <a class="nav-link border" id="tab" data-toggle="pill" href={href} role="tab" aria-controls={job.id} aria-selected="false">
-                        <JobsLeft job={job} />
-                    </a>
+                    // <a class="nav-link border" id="tab" data-toggle="pill" href={href} role="tab" >
+                    //     <JobsLeft job={job} />
+                    // </a>
+                    <Nav.Item>
+                        <Nav.Link eventKey={job.id}><JobsLeft job={job} /></Nav.Link>
+                    </Nav.Item>
                 )
             })
         }
@@ -72,20 +96,21 @@ export default class Jobs extends Component {
 
 
         try {
-            var jobsRightValues = this.state.mode ? (
-                this.state.jobs.map(job => {
-                    return (
-                        <div class="tab-pane fade" id={job.id} role="tabpanel" aria-labelledby="tab">
-                            <JobsRight job={job} sid={this.state.student_id} sname={this.state.student_name}/>
-                        </div>
-                    )
-                })
-            ) : (
+            var jobsRightValues = this.state.mode ?
+                (
                     this.state.jobs.map(job => {
                         return (
-                            <div class="tab-pane fade" id={job.id} role="tabpanel" aria-labelledby="tab">
+                            <Tab.Pane eventKey={job.id}>
+                                <JobsRight job={job} sid={this.state.student_id} sname={this.state.student_name} />
+                            </Tab.Pane>
+                        )
+                    })
+                ) : (
+                    this.state.jobs.map(job => {
+                        return (
+                            <Tab.Pane eventKey="second">
                                 <JobsRightCompany job={job} />
-                            </div>
+                            </Tab.Pane>
                         )
                     })
                 )
@@ -96,7 +121,27 @@ export default class Jobs extends Component {
 
         var jobTop = this.state.mode ? (
             <div class="mar-btm">
-                <JobsTop />
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline col-md-3">
+                        <input class="form-control w-100" type="search" placeholder="Company Name" value={this.state.search_company} onChange={this.updateSearch} name="search_company" />
+                    </form>
+                    <form class="form-inline col-md-3">
+                        <input class="form-control w-100" type="search" placeholder="Job Titles" value={this.state.search_title} onChange={this.updateSearch} name="search_title" />
+                    </form>
+                    <form class="form-inline col-md-3">
+                        <input class="form-control w-100" type="search" placeholder="Location" value={this.state.search_location} onChange={this.updateSearch} name="search_location" />
+                    </form>
+                    <Col md={3}>
+                        <Form.Control className="text-muted" as="select" onChange={this.updateSearch} value={this.state.search_category} name="search_category">
+                            <option value="" hidden>Filter Category</option>
+                            <option value="">All</option>
+                            <option>Intern</option>
+                            <option>Full Time</option>
+                            <option>Co-op</option>
+                            <option>Part Time</option>
+                        </Form.Control>
+                    </Col>
+                </nav>
             </div>
         ) : (null)
 
@@ -104,18 +149,20 @@ export default class Jobs extends Component {
             <div>
                 {jobTop}
                 <div class="card border">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="nav flex-column nav-tabs" id="v-pills-tab" role="tablist" aria-orientation="vertical" style={{ backgroundColor: '#DEDEDE' }}>
-                                {jobsLeftValues}
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="tab-content" id="v-pills-tabContent">
-                                {jobsRightValues}
-                            </div>
-                        </div>
-                    </div>
+                    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                        <Row>
+                            <Col sm={4}>
+                                <Nav variant="pills" className="flex-column">
+                                    {jobsLeftValues}
+                                </Nav>
+                            </Col>
+                            <Col sm={8}>
+                                <Tab.Content>
+                                    {jobsRightValues}
+                                </Tab.Content>
+                            </Col>
+                        </Row>
+                    </Tab.Container>
                 </div>
             </div>
         )

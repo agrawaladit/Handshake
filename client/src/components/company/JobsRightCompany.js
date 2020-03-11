@@ -58,7 +58,7 @@ class JobsRightCompany extends Component {
                                 <Form.Label>Current Status : {application.status}</Form.Label>
                                 <Row>
                                     <Col>
-                                        <Form.Control as="select" name='category' onChange={this.onChange} id={application.id} value={this.state.category}>
+                                        <Form.Control className="mar-top" as="select" name='category' onChange={this.onChange} id={application.id} value={this.state.category}>
                                             <option value="" hidden>Change Status</option>
                                             <option>Pending</option>
                                             <option>Reviewed</option>
@@ -66,7 +66,7 @@ class JobsRightCompany extends Component {
                                         </Form.Control>
                                     </Col>
                                     <Col>
-                                        <Link to="/profile" className="nav-link">
+                                        <Link to="/profiles" className="nav-link">
                                             <Button variant="primary" >Go to Profile</Button>
                                         </Link>
                                     </Col>

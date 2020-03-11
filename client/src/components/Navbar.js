@@ -88,7 +88,7 @@ class Landing extends Component {
     
 
     return (
-      <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight" style={{ width: '100%' }}>
+      <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight" >
         <Navbar>
           <Navbar.Brand href="/">
             <img

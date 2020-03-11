@@ -5,6 +5,11 @@ body {
   background-color: rgb(197, 197, 197);
 }
 
+.no-mar {
+  margin: 0;
+  padding: 0;
+}
+
 .card-block {
   margin: 30px;
 }
@@ -72,6 +77,11 @@ input[type=date]:disabled {
   background: #ffffff;
 }
 
+:local(.nav > .active > a, .nav-pills > .active > a:hover) {
+  background-color:rgb(66, 7, 37);
+  color:white !important;
+}
+
 .widget-bg {
   position: absolute;
   top: 0;
@@ -87,6 +97,9 @@ input[type=date]:disabled {
 }
 .mar-btm {
   margin-bottom: 15px;
+}
+.mar-top {
+  margin-top: 10px;
 }
 .mar-rt {
   margin-right: 15px;
