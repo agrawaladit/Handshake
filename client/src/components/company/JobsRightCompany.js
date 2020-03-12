@@ -11,10 +11,10 @@ class JobsRightCompany extends Component {
         category: ''
     }
 
-    componentWillReceiveProps(props) {
-        this.setState({
+    static getDerivedStateFromProps(props, state) {
+        return {
             job_id: props.job.id
-        })
+        }
     }
 
     checkJobId = (app) => {
@@ -53,7 +53,7 @@ class JobsRightCompany extends Component {
                             <Card.Body>
                                 <Form.Label>Current Status : {application.status}</Form.Label>
                                 <Row>
-                                    <Col>
+                                    <Col md={5} >
                                         <Form.Control className="mar-top" as="select" name='category' onChange={this.onChange} id={application.id} value={this.state.category}>
                                             <option value="" hidden>Change Status</option>
                                             <option>Pending</option>
@@ -61,11 +61,13 @@ class JobsRightCompany extends Component {
                                             <option>Declined</option>
                                         </Form.Control>
                                     </Col>
-                                    <Col>
+                                    <Col md={4} >
                                         <Link to="/profile" className="nav-link">
                                             <Button variant="primary" >View Resume</Button>
                                         </Link>
-                                        <Link to={["/profile/"+application.student_id]} className="nav-link">
+                                    </Col>
+                                    <Col md={3}>
+                                        <Link to={["/profile/" + application.student_id]} className="nav-link">
                                             <Button variant="primary" >Go to Profile</Button>
                                         </Link>
                                     </Col>
