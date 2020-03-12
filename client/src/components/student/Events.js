@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Accordion, Card, Button, Row, Col, Container } from "react-bootstrap";
-import { setRegistrations, getEvents } from '../UserFunctions'
+import { setRegistrations, getEvents, getEducation } from '../UserFunctions'
 import handshake from '../../handshake.png'
 import jwt_decode from 'jwt-decode'
 
@@ -8,14 +8,35 @@ class Events extends Component {
 
     state = {
         events: '',
-        search_event: ''
+        search_event: '',
+        major: '',
+        student_id: '',
     }
 
     componentDidMount() {
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
         getEvents().then(response => {
             if (response) {
                 this.setState({
                     events: response
+                })
+            }
+        })
+            .catch(error => {
+                console.log(error)
+            })
+        
+        getEducation(decoded.id).then(response => {
+            if (response) {
+                this.setState({
+                    major: response.major,
+                    student_id: this.student_id
+                })
+            }
+            else {
+                this.setState({
+                    student_id: this.student_id
                 })
             }
         })
@@ -29,10 +50,8 @@ class Events extends Component {
     }
 
     enroll = e => {
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
         const tempState = {
-            student_id: decoded.id,
+            student_id: this.state.student_id,
             event_id: e.target.value,
         }
         setRegistrations(tempState).then(
@@ -43,7 +62,8 @@ class Events extends Component {
     render() {
         try {
             const eventss = this.state.events.filter((event) => {
-                return (event.name.toLowerCase().indexOf(this.state.search_event.toLowerCase()) !== -1)
+                return ((event.name.toLowerCase().indexOf(this.state.search_event.toLowerCase()) !== -1) &&
+                (this.state.major.toLowerCase().toLowerCase().indexOf(event.eligibility.toLowerCase()) !== -1))
             })
 
 
