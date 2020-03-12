@@ -74,7 +74,7 @@ class Events extends Component {
                             <Container className="pad-all">
                                 <Row>
                                     <Col xs={2}>
-                                        <Card.Img variant="top" src={handshake} style={{height: '150px',width: '150px'}}/>
+                                        <Card.Img variant="top" src={handshake} style={{height: '100px',width: '100px'}}/>
                                     </Col>
                                     <Col xs={8}>
                                         <Card.Title>{event.name}</Card.Title><br/>
