@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Form, Button, Nav, FormControl } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 
-export default class JobNavbar extends Component {
+class JobNavbar extends Component {
     render() {
         return (
             <Navbar bg="light" expand="lg" className="m-auto">
@@ -24,3 +24,5 @@ export default class JobNavbar extends Component {
         )
     }
 }
+
+export default module = withRouter(JobNavbar)

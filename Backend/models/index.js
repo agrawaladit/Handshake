@@ -6,6 +6,8 @@ const User = require('../models/User')
 const UserContact = require('../models/UserContact')
 const UserEducation = require('../models/UserEducation')
 const UserExperience = require('../models/UserExperience')
+const Event = require('../models/Event')
+const Company = require('../models/Company')
 
 
 Job.hasMany(Application, {foreignKey: 'job_id'})
@@ -23,7 +25,13 @@ UserEducation.belongsTo(User, {foreignKey: 'id'})
 User.hasOne(UserExperience, {foreignKey: 'id'})
 UserExperience.belongsTo(User, {foreignKey: 'id'})
 
+Company.hasMany(Event, {foreignKey: 'company_id'})
+Event.belongsTo(Company, {foreignKey: 'company_id'})
+
+Company.hasMany(Job, {foreignKey: 'company_id'})
+Job.belongsTo(Company, {foreignKey: 'company_id'})
+
 
 db.sync()
 
-module.exports = {Application, Job,User,UserContact,UserEducation,UserExperience}
+module.exports = {Application, Job,User,UserContact,UserEducation,UserExperience,Company}

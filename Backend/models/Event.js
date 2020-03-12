@@ -1,32 +1,29 @@
 const Sequelize = require('sequelize')
 const db = require('../config/database')
 
-const Job = db.define('job_posting',
+const Event = db.define('event_posting',
     {
         id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
         },
-        title: {
-        type: Sequelize.STRING
-        },
-        date: {
-        type: Sequelize.STRING
-        },
-        deadline: {
-        type: Sequelize.STRING
-        },
-        location: {
-        type: Sequelize.STRING
-        },
-        salary: {
+        name: {
         type: Sequelize.STRING
         },
         description: {
         type: Sequelize.STRING
         },
-        category: {
+        time: {
+        type: Sequelize.STRING
+        },
+        location: {
+        type: Sequelize.STRING
+        },
+        date: {
+        type: Sequelize.STRING
+        },
+        eligibility: {
         type: Sequelize.STRING
         },
         created: {
@@ -40,4 +37,4 @@ const Job = db.define('job_posting',
 )
 
 
-module.exports = Job
+module.exports = Event

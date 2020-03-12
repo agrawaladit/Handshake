@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const Job = require('../models/Job')
+const { Job, Company } = require('../models')
 
 router.use(cors())
 
 router.post('/', (req, res) => {
   const today = new Date()
-  var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+  var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
   const userData = {
     company: req.body.company,
     title: req.body.title,
@@ -29,11 +29,13 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/',(req,res) => Job.findAll()
-    .then(jobs => {
-        res.send(jobs)
-    })
-    .catch(error => console.log(error))
-    )
+router.get('/', (req, res) => Job.findAll({
+  include: [Company]
+})
+  .then(jobs => {
+    res.send(jobs)
+  })
+  .catch(error => console.log(error))
+)
 
 module.exports = router

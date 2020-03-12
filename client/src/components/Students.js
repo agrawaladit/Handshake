@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { getUsers } from './UserFunctions'
 import handshake from '../handshake.png'
-import { Container,Card, Row, Col, Form } from 'react-bootstrap'
+import { Container, Card, Row, Col, Button } from 'react-bootstrap'
+import {Link, withRouter} from 'react-router-dom'
 
-export default class Students extends Component {
+class Students extends Component {
 
     state = {
         users: [],
@@ -40,7 +41,7 @@ export default class Students extends Component {
                 var name = user.first_name + ' ' + user.last_name
                 return (
                     (user.user_education.major.toLowerCase().indexOf(this.state.major.toLowerCase()) !== -1) &&
-                    (user.school.toLowerCase().indexOf(this.state.c_name.toLowerCase()) !== -1) && 
+                    (user.school.toLowerCase().indexOf(this.state.c_name.toLowerCase()) !== -1) &&
                     (name.toLowerCase().indexOf(this.state.s_name.toLowerCase()) !== -1))
             })
             var userCards = users.map(user => {
@@ -50,10 +51,15 @@ export default class Students extends Component {
                             <Col xs={2}>
                                 <Card.Img variant="top" src={handshake} style={{ height: '100px', width: '100px' }} />
                             </Col>
-                            <Col xs={10} className='pad-all'>
+                            <Col xs={8} className='pad-all'>
                                 <Card.Title>{[user.first_name + ' ' + user.last_name]}</Card.Title>
                                 <Card.Subtitle className="mb-2">{user.school}</Card.Subtitle><br />
                                 <Card.Subtitle className="mb-2 text-muted">Major: {user.user_education.major}</Card.Subtitle>
+                            </Col>
+                            <Col xs={2}>
+                                <Link to="/profile" className="nav-link">
+                                    <Button variant="primary" >Go to Profile</Button>
+                                </Link>
                             </Col>
                         </Row>
                     </Card>
@@ -88,3 +94,5 @@ export default class Students extends Component {
         )
     }
 }
+
+export default Students

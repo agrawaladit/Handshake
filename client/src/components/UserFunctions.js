@@ -213,9 +213,9 @@ export const getApplications = () => {
 export const setApplications = app => {
   return axios
     .post('applications', qs.stringify({
-      student_id : app.student_id,
-      job_id : app.job_id,
-      student_name : app.student_name,
+      student_id: app.student_id,
+      job_id: app.job_id,
+      student_name: app.student_name,
       status: app.status
     }), config)
     .then(response => {
@@ -226,11 +226,11 @@ export const setApplications = app => {
     })
 }
 
-export const setStatus = (id,status) => {
+export const setStatus = (id, status) => {
   return axios
     .post('applications/update', qs.stringify({
       id: id,
-      status: status 
+      status: status
     }), config)
     .then(response => {
       console.log("Status Updated")
@@ -271,6 +271,37 @@ export const getUsers = () => {
     .get('users')
     .then(response => {
       return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+
+export const getEvents = () => {
+  return axios
+    .get('events')
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setEvents = job => {
+  return axios
+    .post('events', qs.stringify({
+      company: job.company,
+      name: job.name,
+      description: job.description,
+      time: job.time,
+      date: job.date,
+      location: job.location,
+      eligibility: job.eligibility,
+    }), config)
+    .then(response => {
+      console.log("Event Added")
     })
     .catch(err => {
       console.log(err)

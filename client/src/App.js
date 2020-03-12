@@ -12,6 +12,7 @@ import Jobs from './components/Jobs'
 import RegisterCompany from './components/company/RegisterCompany'
 import ProfileCompany from './components/company/ProfileCompany'
 import JobsCompany from './components/company/JobsCompany'
+import EventPost from './components/company/EventPost'
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/profilec" component={ProfileCompany} />
             <Route exact path="/jobsc" component={JobsCompany} />
             <Route exact path="/applications" component={Applications} />
+            <Route exact path="/eventsc" component={EventPost} />
             <Route exact path="/students" component={Students} />
           </div>
         </div>

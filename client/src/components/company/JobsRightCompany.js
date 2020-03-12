@@ -62,7 +62,7 @@ class JobsRightCompany extends Component {
                                         </Form.Control>
                                     </Col>
                                     <Col md={4} >
-                                        <Link to="/profile" className="nav-link">
+                                        <Link to="/profiles" className="nav-link">
                                             <Button variant="primary" >View Resume</Button>
                                         </Link>
                                     </Col>

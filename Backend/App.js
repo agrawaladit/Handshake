@@ -27,6 +27,7 @@ app.use('/companydetails', require('./routes/CompanyDetails'))
 app.use('/jobs', require('./routes/Jobs'))
 app.use('/applications', require('./routes/Applications'))
 app.use('/usercontact', require('./routes/UserContacts'))
+app.use('/events', require('./routes/Events'))
 
 //db.sync()
 

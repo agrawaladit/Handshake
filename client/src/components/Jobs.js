@@ -61,7 +61,7 @@ export default class Jobs extends Component {
         const jobs = this.state.mode ? (
             this.state.jobs.filter(
                 job => {
-                    return ((job.company.toLowerCase().indexOf(this.state.search_company.toLowerCase()) !== -1) &&
+                    return ((job.company.company.toLowerCase().indexOf(this.state.search_company.toLowerCase()) !== -1) &&
                         (job.title.toLowerCase().indexOf(this.state.search_title.toLowerCase()) !== -1) &&
                         (job.location.toLowerCase().indexOf(this.state.search_location.toLowerCase()) !== -1) &&
                         (job.category.indexOf(this.state.search_category) !== -1))
@@ -70,7 +70,7 @@ export default class Jobs extends Component {
         ) : (
                 this.state.jobs.filter(
                     job => {
-                        return (job.company === this.state.company)
+                        return (job.company.company === this.state.company)
                     }
                 )
             )

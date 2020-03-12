@@ -5,7 +5,7 @@ import { Card, Button, Row, Col, Container } from 'react-bootstrap'
 export default class JobsLeft extends Component {
     render() {
         var job = this.props.job
-        var subtitle = [job.company+" - "+job.location]
+        var subtitle = [job.company.company+" - "+job.location]
         return (
             <Container className="pad-all">
                 <Row>
