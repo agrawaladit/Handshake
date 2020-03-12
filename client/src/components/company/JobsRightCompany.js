@@ -11,10 +11,10 @@ class JobsRightCompany extends Component {
         category: ''
     }
 
-    static getDerivedStateFromProps(props, state) {
-        return {
+    componentWillReceiveProps(props) {
+        this.setState({
             job_id: props.job.id
-        }
+        })
     }
 
     checkJobId = (app) => {
@@ -41,10 +41,6 @@ class JobsRightCompany extends Component {
         )
     }
 
-    onClick = e => {
-        <Link to="/profile" className="nav-link" />
-    }
-
     render() {
         try {
             var application = this.state.applications.map(application => {
@@ -66,7 +62,10 @@ class JobsRightCompany extends Component {
                                         </Form.Control>
                                     </Col>
                                     <Col>
-                                        <Link to="/profiles" className="nav-link">
+                                        <Link to="/profile" className="nav-link">
+                                            <Button variant="primary" >View Resume</Button>
+                                        </Link>
+                                        <Link to={["/profile/"+application.student_id]} className="nav-link">
                                             <Button variant="primary" >Go to Profile</Button>
                                         </Link>
                                     </Col>

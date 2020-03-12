@@ -4,33 +4,33 @@ import ProfilePhoto from './ProfilePhoto'
 import ProfileField from './ProfileField'
 import ProfileSkill from './ProfileSkill'
 import ProfileInfo from './ProfileInfo'
-import { getEducation, setEducation, setExperience, getExperience, getProfile } from '../UserFunctions'
+import { getEducation, setEducation, setExperience, getExperience, getProfile, getUserContact } from '../UserFunctions'
 
 class Profile extends Component {
-  constructor() {
-    super()
-    this.state = {
-      id: '',
-      first_name: '',
-      last_name: '',
-      email: '',
-      school: '',
-      education: '',
-      experience: '',
-      student: '',
-      errors: {}
-    }
+  state = {
+    id: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    school: '',
+    education: '',
+    experience: '',
+    student: '',
+    contact: '',
+    errors: {}
   }
 
 
-  static getDerivedStateFromProps(props, state) {
-    return {
-      id: props.id
-    }
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   return {
+  //     id: props.id
+  //   }
+  // }
 
 
   componentDidMount() {
+    console.log(this.props);
+    
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
     const student = decoded.school ? decoded : (
@@ -38,6 +38,7 @@ class Profile extends Component {
         return res
       })
     )
+    
     this.setState({
       id: student.id,
       first_name: student.first_name,
@@ -66,7 +67,18 @@ class Profile extends Component {
       .catch(error => {
         console.log(error)
       })
-    console.log(this.state.experience)
+
+    getUserContact(student.id).then(response => {
+      if (response) {
+        this.setState({
+          contact: response
+        })
+      }
+    })
+      .catch(error => {
+        console.log(error)
+      })
+    
   }
 
   handleEducation(user) {
@@ -107,13 +119,14 @@ class Profile extends Component {
     // })
     const ed = this.state.education
     const ex = this.state.experience
+    
     return (
       <div className="container">
         <div className="row">
           <div className="col-xl-3">
             <ProfilePhoto state={this.state} />
             <ProfileSkill />
-            <ProfileInfo />
+            <ProfileInfo contact={this.state.contact}/>
           </div>
           <div className="col-xl-9">
             <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.state.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />

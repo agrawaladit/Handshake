@@ -239,3 +239,29 @@ export const setStatus = (id,status) => {
       console.log(err)
     })
 }
+
+export const setUserContact = user => {
+  return axios
+    .post('usercontact', qs.stringify({
+      id: user.id,
+      email: user.email,
+      phone: user.phone
+    }), config)
+    .then(response => {
+      console.log("Education Field Added")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const getUserContact = id => {
+  return axios
+    .get('usercontact?id=' + id)
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

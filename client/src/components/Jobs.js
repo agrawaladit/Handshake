@@ -107,7 +107,7 @@ export default class Jobs extends Component {
                 ) : (
                     this.state.jobs.map(job => {
                         return (
-                            <Tab.Pane eventKey="second">
+                            <Tab.Pane eventKey={job.id}>
                                 <JobsRightCompany job={job} />
                             </Tab.Pane>
                         )

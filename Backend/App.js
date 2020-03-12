@@ -26,5 +26,6 @@ app.use('/experience', require('./routes/UserExperiences'))
 app.use('/companydetails', require('./routes/CompanyDetails'))
 app.use('/jobs', require('./routes/Jobs'))
 app.use('/applications', require('./routes/Applications'))
+app.use('/usercontact', require('./routes/UserContacts'))
 
 app.listen(PORT, console.log(`Server Started on PORT ${PORT}`))
