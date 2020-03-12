@@ -1,15 +1,12 @@
 const Sequelize = require('sequelize')
 const db = require('../config/database')
 
-const Application = db.define('job_application',
+const Registration = db.define('event_registration',
     {
         id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
-        },
-        status: {
-        type: Sequelize.STRING
         },
         created: {
         type: Sequelize.DATE,
@@ -22,4 +19,4 @@ const Application = db.define('job_application',
 )
 
 
-module.exports = Application
+module.exports = Registration

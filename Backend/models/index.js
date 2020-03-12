@@ -8,10 +8,17 @@ const UserEducation = require('../models/UserEducation')
 const UserExperience = require('../models/UserExperience')
 const Event = require('../models/Event')
 const Company = require('../models/Company')
+const Registration = require('../models/Registration')
 
 
 Job.hasMany(Application, {foreignKey: 'job_id'})
 Application.belongsTo(Job, {foreignKey: 'job_id'})
+
+Event.hasMany(Registration, {foreignKey: 'event_id'})
+Registration.belongsTo(Event, {foreignKey: 'event_id'})
+
+User.hasMany(Registration, {foreignKey: 'student_id'})
+Registration.belongsTo(User, {foreignKey: 'student_id'})
 
 User.hasMany(Application, {foreignKey: 'student_id'})
 Application.belongsTo(User, {foreignKey: 'student_id'})
@@ -34,4 +41,4 @@ Job.belongsTo(Company, {foreignKey: 'company_id'})
 
 db.sync()
 
-module.exports = {Application, Job,User,UserContact,UserEducation,UserExperience,Company}
+module.exports = {Application, Job,User,UserContact,UserEducation,UserExperience,Company,Registration,Event}

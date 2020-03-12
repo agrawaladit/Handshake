@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const UserContact = require('../models/UserContact')
-
+const {UserConatct} = require('../models')
 router.use(cors())
 
 router.post('/', (req, res) => {

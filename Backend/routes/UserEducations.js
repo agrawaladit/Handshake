@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const UserEducation = require('../models/UserEducation')
+const {UserEducation} = require('../models')
 
 router.use(cors())
 

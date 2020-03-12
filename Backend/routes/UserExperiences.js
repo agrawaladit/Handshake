@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const UserExperience = require('../models/UserExperience')
+const {UserExperience} = require('../models')
 
 router.use(cors())
 

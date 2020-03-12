@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
 import { Accordion, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { getApplications, setStatus } from '../UserFunctions'
+import { getEvents } from '../UserFunctions'
 import { Link, withRouter } from 'react-router-dom'
 
 class JobsRightCompany extends Component {
 
     state = {
-        applications: '',
-        job_id: '',
-        category: ''
+        events: '',
+        event_id: ''
     }
 
     static getDerivedStateFromProps(props, state) {
         return {
-            job_id: props.job.id
+            event_id: props.event
         }
     }
 
 
     componentDidMount() {
-        getApplications().then(response => {
+        getEvents().then(response => {
             if (response) {
                 this.setState({
                     applications: response.filter((app) => {return app.job_id === this.state.job_id})

@@ -27,7 +27,6 @@ router.post('/', (req, res) => {
     const appData = {
         student_id: parseInt(req.body.student_id),
         job_id: parseInt(req.body.job_id),
-        student_name: req.body.student_name,
         status: req.body.status,
         created: today
     }

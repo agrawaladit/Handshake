@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const Event = require('../models/Event')
+const {Event} = require('../models')
 
 router.use(cors())
 
