@@ -320,7 +320,7 @@ export const getRegistrations = () => {
 
 export const setRegistrations = reg => {
   return axios
-    .post('regisrations', qs.stringify({
+    .post('registrations', qs.stringify({
       student_id: reg.student_id,
       event_id: reg.event_id
     }), config)
