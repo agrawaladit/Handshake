@@ -6,7 +6,6 @@ export default class JobsRight extends Component {
     state = {
         student_id: '',
         job_id: '',
-        student_name: '',
         status: ''
     }
 
@@ -14,7 +13,6 @@ export default class JobsRight extends Component {
         return {
             student_id: props.sid,
             job_id: props.job.id,
-            student_name: props.sname,
             status: 'Pending'
         }
     }

@@ -42,4 +42,5 @@ const Job = db.define('job_posting',
     }
 )
 
+
 module.exports = Job

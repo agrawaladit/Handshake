@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const Application = require('../models/Application')
+const {User,Job,Application} = require('../models')
 
 
 router.use(cors())
@@ -56,7 +56,9 @@ router.post('/', (req, res) => {
         })
 })
 
-router.get('/', (req, res) => Application.findAll()
+router.get('/', (req, res) => Application.findAll({
+    include: [User,Job]
+})
     .then(apps => {
         res.send(apps)
     })

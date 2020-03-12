@@ -45,8 +45,7 @@ export default class Jobs extends Component {
             console.log(decoded)
             this.setState({
                 mode: true,
-                student_id: decoded.id,
-                student_name: decoded.first_name + " " + decoded.last_name
+                student_id: decoded.id
             })
         }
         if (decoded.company) {
@@ -97,7 +96,7 @@ export default class Jobs extends Component {
                     this.state.jobs.map(job => {
                         return (
                             <Tab.Pane eventKey={job.id}>
-                                <JobsRight job={job} sid={this.state.student_id} sname={this.state.student_name} />
+                                <JobsRight job={job} sid={this.state.student_id} />
                             </Tab.Pane>
                         )
                     })

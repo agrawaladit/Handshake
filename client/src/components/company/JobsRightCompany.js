@@ -47,7 +47,7 @@ class JobsRightCompany extends Component {
                 return (
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey={application.student_id}>
-                            {application.student_name}
+                            {application.user.first_name + " " + application.user.last_name}
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={application.student_id}>
                             <Card.Body>
