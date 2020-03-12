@@ -52,7 +52,6 @@ export default class Jobs extends Component {
                     return (event.company_id === this.state.company)
                 }
             )
-            console.log(events);
             
             var eventsLeftValues = events.map(event => {
                 return (
@@ -105,7 +104,7 @@ export default class Jobs extends Component {
                             </Col>
                             <Col sm={8}>
                                 <Tab.Content>
-                                    {/* {eventsRightValues} */}
+                                    {eventsRightValues}
                                 </Tab.Content>
                             </Col>
                         </Row>
