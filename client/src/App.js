@@ -6,10 +6,14 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import Register from './components/student/Register'
 import Profile from './components/student/Profile'
+import Applications from './components/student/Applications'
+import Students from './components/Students'
 import Jobs from './components/Jobs'
 import RegisterCompany from './components/company/RegisterCompany'
 import ProfileCompany from './components/company/ProfileCompany'
 import JobsCompany from './components/company/JobsCompany'
+
+
 class App extends Component {
   render() {
     return (
@@ -25,6 +29,8 @@ class App extends Component {
             <Route exact path="/jobs" component={Jobs} />
             <Route exact path="/profilec" component={ProfileCompany} />
             <Route exact path="/jobsc" component={JobsCompany} />
+            <Route exact path="/applications" component={Applications} />
+            <Route exact path="/students" component={Students} />
           </div>
         </div>
       </Router>

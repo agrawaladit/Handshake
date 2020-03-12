@@ -265,3 +265,14 @@ export const getUserContact = id => {
       console.log(err)
     })
 }
+
+export const getUsers = () => {
+  return axios
+    .get('users')
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

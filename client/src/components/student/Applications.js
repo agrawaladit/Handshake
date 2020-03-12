@@ -2,15 +2,21 @@ import React, { Component } from 'react'
 import { getApplications } from '../UserFunctions'
 import jwt_decode from 'jwt-decode'
 import { Card } from 'react-bootstrap'
-import handshake from '../handshake.png'
+import handshake from '../../handshake.png'
+import {Container,Row,Col,Form} from 'react-bootstrap'
 
 export default class Applications extends Component {
 
     state = {
-        applications: '',
+        applications: [],
         filter_status: ''
     }
 
+    updateFilter = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
 
     checkStudentId = (app) => {
         return app.student_id === this.state.id
@@ -40,18 +46,19 @@ export default class Applications extends Component {
         try {
             var apps = applications.map(application => {
                 return (
-                    <Container className="pad-all">
+                    <Card className="pad-all">
                         <Row>
-                            <Col xs={3}>
-                                <Card.Img variant="top" src={handshake} />
+                            <Col xs={2}>
+                                <Card.Img variant="top" src={handshake} style={{height: '100px', width: '100px'}} />
                             </Col>
-                            <Col xs={9}>
-                                <Card.Title>{application.title}</Card.Title>
-                                <Card.Subtitle className="mb-2">{subtitle}</Card.Subtitle>
-                                <Card.Subtitle className="mb-2 text-muted">{job.category}</Card.Subtitle>
+                            <Col xs={10} className='pad-all'>
+                                <Card.Title>{application.job_posting.title}</Card.Title>
+                                <Card.Subtitle className="mb-2">{application.job_posting.company}</Card.Subtitle><br/>
+                                <Card.Subtitle className="mb-2 text-muted">Status: {application.status}</Card.Subtitle>
+                                <Card.Subtitle className="mb-2 text-muted">Applied: {application.job_posting.date} - Deadline: {application.job_posting.deadline}</Card.Subtitle>
                             </Col>
                         </Row>
-                    </Container>
+                    </Card>
                 )
             })
         }
@@ -61,8 +68,8 @@ export default class Applications extends Component {
 
         return (
             <Row>
-                <Col>
-                    <Card>
+                <Col sm={3}>
+                    <Card style={{height : '100%'}} className='pad-all'>
                         <Card.Subtitle>Filter Status</Card.Subtitle>
                         <Form.Control className="text-muted" as="select" onChange={this.updateFilter} value={this.state.filter_status} name="filter_status">
                             <option value="" hidden>Filter Status</option>
@@ -73,7 +80,7 @@ export default class Applications extends Component {
                         </Form.Control>
                     </Card>
                 </Col>
-                <Col>
+                <Col sm={9}>
                     {apps}
                 </Col>
             </Row>

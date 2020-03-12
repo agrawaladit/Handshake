@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const User = require('../models/User')
+const {User,UserContact,UserEducation,UserExperience} = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 process.env.SECRET_KEY = 'secret'
 router.use(cors())
 //Get user list
-router.get('/', (req, res) => User.findAll()
+router.get('/', (req, res) => User.findAll({
+    include: [UserContact,UserEducation,UserExperience]
+})
   .then(u => {
-    console.log(u)
-    var users = u
     res.send(u)
   })
   .catch(error => console.log(error))

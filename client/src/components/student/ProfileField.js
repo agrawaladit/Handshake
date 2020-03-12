@@ -17,8 +17,8 @@ class ProfileField extends Component {
         buttonName: 'Edit'
     }
 
-    static getDerivedStateFromProps(props, state) {
-        return {
+    componentWillReceiveProps(props) {
+        this.setState({
             subtitle: props.t2,
             id: props.id,
             f1: props.f1,
@@ -27,7 +27,7 @@ class ProfileField extends Component {
             f4: props.f4,
             f5: props.f5,
             f6: props.f6,
-        }
+        })
     }
     
 
@@ -38,6 +38,8 @@ class ProfileField extends Component {
             buttonName: this.state.disable ? 'Save' : 'Edit',
             disable: !this.state.disable
         })
+        console.log(this.state);
+        
         this.state.disable ? console.log('edit mode on') : this.props.todo(this.state);
     }
 

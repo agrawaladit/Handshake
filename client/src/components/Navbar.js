@@ -39,6 +39,9 @@ class Landing extends Component {
             Post Jobs
           </Link>
         </Nav>
+        <Link to="/students" className="nav-link">
+            Students
+          </Link>
         <Nav>
           <Link to="/profilec" className="nav-link">
             Profile
@@ -59,6 +62,14 @@ class Landing extends Component {
             Jobs
           </Link>
         </Nav>
+        <Nav>
+          <Link to="/applications" className="nav-link">
+            Applications
+          </Link>
+        </Nav>
+        <Link to="/students" className="nav-link">
+            Students
+          </Link>
         <Nav>
           <Link to="/profile" className="nav-link">
             Profile
