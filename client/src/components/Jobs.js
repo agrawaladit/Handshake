@@ -80,9 +80,6 @@ export default class Jobs extends Component {
             var jobsLeftValues = jobs.map(job => {
                 var href = ["#" + job.id]
                 return (
-                    // <a class="nav-link border" id="tab" data-toggle="pill" href={href} role="tab" >
-                    //     <JobsLeft job={job} />
-                    // </a>
                     <Nav.Item>
                         <Nav.Link eventKey={job.id}><JobsLeft job={job} /></Nav.Link>
                     </Nav.Item>
