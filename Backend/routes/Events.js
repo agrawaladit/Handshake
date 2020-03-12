@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const {Event} = require('../models')
+const {Event, Company} = require('../models')
 
 router.use(cors())
 
@@ -27,7 +27,9 @@ router.post('/', (req, res) => {
         })
 })
 
-router.get('/', (req, res) => Event.findAll()
+router.get('/', (req, res) => Event.findAll({
+    include: [Company]
+})
     .then(events => {
         res.send(events)
     })

@@ -215,7 +215,6 @@ export const setApplications = app => {
     .post('applications', qs.stringify({
       student_id: app.student_id,
       job_id: app.job_id,
-      student_name: app.student_name,
       status: app.status
     }), config)
     .then(response => {
@@ -302,6 +301,31 @@ export const setEvents = job => {
     }), config)
     .then(response => {
       console.log("Event Added")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const getRegistrations = () => {
+  return axios
+    .get('registrations')
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setRegistrations = reg => {
+  return axios
+    .post('regisrations', qs.stringify({
+      student_id: reg.student_id,
+      event_id: reg.event_id
+    }), config)
+    .then(response => {
+      console.log("Registered")
     })
     .catch(err => {
       console.log(err)

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import JobPost from './JobPost'
-import JobNavbar from './JobNavbar'
+import EventPost from './EventPost'
+import EventNavbar from './EventNavbar'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import JobsView from '../Jobs'
+import EventsView from './EventsView'
 import { Container, Row, Col } from "react-bootstrap";
 import Profile from '../student/Profile'
 
@@ -11,12 +11,12 @@ export default class JobsCompany extends Component {
         return (
             <Router>
                 <Container>
-                    <JobNavbar className="pad-all"></JobNavbar>
-                    <Route exact path="/" component={JobPost} />
+                    <EventNavbar className="pad-all"></EventNavbar>
+                    <Route exact path="/" component={EventPost} />
                     <Row>
                         <Container>
-                            <Route exact path="/jobsc" component={JobPost} />
-                            <Route exact path="/jobs" component={JobsView} />
+                            <Route exact path="/eventsc" component={EventPost} />
+                            <Route exact path="/events" component={EventsView} />
                             <Route exact path="/profiles" component={Profile} />
                         </Container>
                     </Row>
