@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { Card, Button } from 'react-bootstrap'
 import Landscape from '../../landscape.jpeg'
-import { getEducation, setEducation, setExperience, getExperience, getCompany, setCompany } from '../UserFunctions'
+import { getCompany, setCompany } from '../UserFunctions'
+import Upload from '../Upload'
 
 class ProfileCompany extends Component {
     constructor() {
@@ -73,9 +74,11 @@ class ProfileCompany extends Component {
 
     render() {
         const info = this.state.info
+        console.log(info)
+        const profile = info.image ? ('/uploads/company/image/'+info.image) : Landscape
         return (
             <Card>
-                <Card.Img variant="top" src={Landscape} style={{ height: '200px' }} />
+                <Card.Img variant="top" src={profile} style={{ height: '200px' }} />
                 <Card.Body>
                     <Card.Title>
                         <input type="text" name="company" disabled={this.state.disable} value={this.state.company} className={this.state.inputClass} onChange={this.handleChange} placeholder="Add Company Name" style={{ fontSize: 50 }} />
@@ -87,6 +90,7 @@ class ProfileCompany extends Component {
                     </Card.Text>
                     <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
                 </Card.Body>
+                <Upload id={info.id} mode='company'></Upload>
             </Card>
         )
     }

@@ -4,8 +4,18 @@ import Upload from '../Upload'
 
 class ProfilePhoto extends Component {
     state = { 
-        profile : Profile
+        profile : Profile,
+        info: '',
+        id: ''
     }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            info: nextProps.state,
+            id : nextProps.state.id
+        })
+    }
+
     render() {
         const info = this.props.state
         const profile = '/uploads/user/image/'+info.contact.image ? ('/uploads/user/image/'+info.contact.image) : this.state.profile

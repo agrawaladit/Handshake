@@ -4,7 +4,7 @@ import ProfilePhoto from './ProfilePhoto'
 import ProfileField from './ProfileField'
 import ProfileSkill from './ProfileSkill'
 import ProfileInfo from './ProfileInfo'
-import { getEducation, setEducation, setExperience, getExperience, getProfile, getUserContact } from '../UserFunctions'
+import { setEducation, setExperience, getProfile } from '../UserFunctions'
 
 class Profile extends Component {
   state = {
@@ -19,8 +19,6 @@ class Profile extends Component {
     contact: [],
     errors: {}
   }
-
-
 
   componentDidMount() {
     console.log(this.props);

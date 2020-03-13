@@ -1,12 +1,12 @@
 import React from 'react'
-import {Button,FormControl,Form} from 'react-bootstrap'
+import { Card, Accordion, Button, FormControl, Form } from 'react-bootstrap'
 const axios = require("axios");
 
 export default class Upload extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             file: null,
             id: '',
             mode: ''
@@ -18,15 +18,16 @@ export default class Upload extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             id: nextProps.id,
-            mode: nextProps.mode
+            mode: nextProps.mode,
         })
     }
 
-    onFormSubmit(e){
+    onFormSubmit(e) {
         e.preventDefault();
+        
         const formData = new FormData();
-        formData.append('myImage',this.state.file);
-        formData.append('id',this.state.id);
+        formData.append('myImage', this.state.file);
+        formData.append('id', this.state.id);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -34,22 +35,23 @@ export default class Upload extends React.Component {
         };
 
         const direction = "/upload/" + this.state.mode
-        axios.post(direction,formData,config)
+        axios.post(direction, formData, config)
             .then((response) => {
                 alert("The file is successfully uploaded");
             }).catch((error) => {
-        });
+            });
     }
     onChange(e) {
-        this.setState({file:e.target.files[0]});
+        this.setState({ file: e.target.files[0] });
     }
 
     render() {
         return (
-            <Form onSubmit={this.onFormSubmit}>
-                <FormControl type="file" name="myImage" onChange= {this.onChange}/>
-                <br/>
-                <Button type="submit">Upload</Button>
+            <Form onSubmit={this.onFormSubmit} className="pad-all">
+                <Card style={{width: '100px'}}>
+                    <FormControl type="file" name="myImage" onChange={this.onChange} />
+                    <Button type="submit" >Upload</Button>
+                </Card>
             </Form>
         )
     }

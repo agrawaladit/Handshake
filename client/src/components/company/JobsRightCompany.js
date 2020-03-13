@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Accordion, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { getApplications, setStatus } from '../UserFunctions'
+import { getApplications, setStatus,getProfile } from '../UserFunctions'
 import { Link, withRouter } from 'react-router-dom'
+import MyModal from './MyModal'
 
 class JobsRightCompany extends Component {
-
+      
     state = {
         applications: '',
         job_id: '',
-        category: ''
+        category: '',
+        temp: ''
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -20,6 +22,7 @@ class JobsRightCompany extends Component {
 
     componentDidMount() {
         getApplications().then(response => {
+            
             if (response) {
                 this.setState({
                     applications: response.filter((app) => {return app.job_id === this.state.job_id})
@@ -37,6 +40,19 @@ class JobsRightCompany extends Component {
             console.log("status changed")
         )
     }
+
+    getPath = id => {
+        getProfile(id).then(response => {
+            
+            if (response) {
+                ('/uploads/company/image/'+response.user_contact.resume)
+            }
+        })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
 
     render() {
         try {
@@ -59,9 +75,7 @@ class JobsRightCompany extends Component {
                                         </Form.Control>
                                     </Col>
                                     <Col md={4} >
-                                        <Link to="/profiles" className="nav-link">
-                                            <Button variant="primary" >View Resume</Button>
-                                        </Link>
+                                        <MyModal id={application.id}/>
                                     </Col>
                                     <Col md={3}>
                                         <Link to={["/profile/" + application.student_id]} className="nav-link">

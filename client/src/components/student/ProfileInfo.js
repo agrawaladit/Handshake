@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Card, Button} from 'react-bootstrap'
 import {setUserContact} from '../UserFunctions'
+import Upload from '../Upload'
 
 export default class ProfileInfo extends Component {
     state = {
@@ -42,6 +43,7 @@ export default class ProfileInfo extends Component {
         })
     }
 
+
     render() {
         return (
             <Card className="pad-all" >
@@ -52,6 +54,9 @@ export default class ProfileInfo extends Component {
                 <input type="text" name="phone" disabled={this.state.disable} value={this.state.phone} className={this.state.inputClass} onChange={this.handleChange} placeholder="Enter Phone"/>
                 <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
                 </Card.Body>
+                <Card.Text>Upload Resume</Card.Text>
+                <Upload id={this.state.id} mode='resume'></Upload>
+
             </Card>
         )
     }
