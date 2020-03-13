@@ -23,6 +23,9 @@ const Company = db.define('company',
         description: {
         type: Sequelize.STRING
         },
+        image: {
+        type: Sequelize.STRING
+        },
         created: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW

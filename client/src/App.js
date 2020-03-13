@@ -14,6 +14,7 @@ import RegisterCompany from './components/company/RegisterCompany'
 import ProfileCompany from './components/company/ProfileCompany'
 import JobsCompany from './components/company/JobsCompany'
 import EventsCompany from './components/company/EventsCompany'
+import Upload from './components/Upload'
 
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
           </div>
         </div>
       </Router>
+      // <Upload></Upload>
     )
   }
 }

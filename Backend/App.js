@@ -15,6 +15,8 @@ db.authenticate()
 
 app.get('/',(req,res) => res.send('Hello'))
 
+app.use(express.static(path.join(__dirname, '/public')))
+
 app.use(bodyparser.urlencoded({
     extended: true
   }));
@@ -29,6 +31,7 @@ app.use('/applications', require('./routes/Applications'))
 app.use('/usercontact', require('./routes/UserContacts'))
 app.use('/events', require('./routes/Events'))
 app.use('/registrations', require('./routes/Registrations'))
+app.use('/upload', require('./routes/Upload'))
 
 
 app.listen(PORT, console.log(`Server Started on PORT ${PORT}`))

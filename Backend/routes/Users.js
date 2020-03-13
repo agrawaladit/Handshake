@@ -83,7 +83,8 @@ router.get('/profile', (req, res) => {
   User.findOne({
     where: {
       id: req.query.id
-    }
+    },
+    include: [UserContact,UserEducation,UserExperience]
   })
     .then(user => {
       res.send(user)

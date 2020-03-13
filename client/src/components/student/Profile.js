@@ -13,72 +13,34 @@ class Profile extends Component {
     last_name: '',
     email: '',
     school: '',
-    education: '',
-    experience: '',
+    education: [],
+    experience: [],
     student: '',
-    contact: '',
+    contact: [],
     errors: {}
   }
 
 
-  // static getDerivedStateFromProps(props, state) {
-  //   return {
-  //     id: props.id
-  //   }
-  // }
-
 
   componentDidMount() {
     console.log(this.props);
-    
+
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
-    const student = decoded.school ? decoded : (
-      getProfile(this.state.id).then(res => {
-        return res
+    getProfile(decoded.id).then(res => {
+      this.setState({
+        id: res.id,
+        first_name: res.first_name,
+        last_name: res.last_name,
+        email: res.email,
+        school: res.school,
+        education: res.user_education,
+        experience: res.user_experience,
+        contact: res.user_contact
       })
-    )
-    
-    this.setState({
-      id: student.id,
-      first_name: student.first_name,
-      last_name: student.last_name,
-      email: student.email,
-      school: student.school,
+      return res
     })
-    getEducation(student.id).then(response => {
-      if (response) {
-        this.setState({
-          education: response
-        })
-      }
-    })
-      .catch(error => {
-        console.log(error)
-      })
 
-    getExperience(student.id).then(response => {
-      if (response) {
-        this.setState({
-          experience: response
-        })
-      }
-    })
-      .catch(error => {
-        console.log(error)
-      })
-
-    getUserContact(student.id).then(response => {
-      if (response) {
-        this.setState({
-          contact: response
-        })
-      }
-    })
-      .catch(error => {
-        console.log(error)
-      })
-    
   }
 
   handleEducation(user) {
@@ -117,16 +79,18 @@ class Profile extends Component {
     // const education = this.state.education.map(edu => {
     //   return(<ProfileField t1="Education" t2={edu.school} todo={this.handleEducation} key={Math.random()}/>)
     // })
+
+    console.log(this.state)
     const ed = this.state.education
     const ex = this.state.experience
-    
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-xl-3">
             <ProfilePhoto state={this.state} />
             <ProfileSkill />
-            <ProfileInfo contact={this.state.contact}/>
+            <ProfileInfo contact={this.state.contact} />
           </div>
           <div className="col-xl-9">
             <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.state.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />

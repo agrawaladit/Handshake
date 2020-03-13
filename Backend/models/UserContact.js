@@ -13,6 +13,12 @@ const UserContact = db.define('user_contact',
         phone: {
         type: Sequelize.STRING
         },
+        image: {
+        type: Sequelize.STRING
+        },
+        resume: {
+        type: Sequelize.STRING
+        },
         created: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW

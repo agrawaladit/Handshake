@@ -331,3 +331,17 @@ export const setRegistrations = reg => {
       console.log(err)
     })
 }
+
+export const upload = reg => {
+  return axios
+    .post('registrations', qs.stringify({
+      student_id: reg.student_id,
+      event_id: reg.event_id
+    }), config)
+    .then(response => {
+      console.log("Registered")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
