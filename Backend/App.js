@@ -4,6 +4,7 @@ const bodyparser = require('body-parser')
 const path = require('path')
 const app = express()
 const PORT = process.env.PORT || 5000 
+const HOST = process.env.HOST || '18.144.23.207'
 
 
 const db = require('./config/database')
@@ -34,4 +35,4 @@ app.use('/registrations', require('./routes/Registrations'))
 app.use('/upload', require('./routes/Upload'))
 
 
-app.listen(PORT, console.log(`Server Started on PORT ${PORT}`))
+app.listen(PORT,console.log(`Server Started on PORT ${PORT}`))

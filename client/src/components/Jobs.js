@@ -28,6 +28,7 @@ export default class Jobs extends Component {
 
     componentDidMount() {
         getJobs().then(response => {
+            console.log(response)
             if (response) {
                 this.setState({
                     jobs: response
@@ -58,6 +59,8 @@ export default class Jobs extends Component {
 
 
     render() {
+        console.log(this.state.jobs);
+        
         const jobs = this.state.mode ? (
             this.state.jobs.filter(
                 job => {
@@ -77,7 +80,6 @@ export default class Jobs extends Component {
 
         try {
             var jobsLeftValues = jobs.map(job => {
-                var href = ["#" + job.id]
                 return (
                     <Nav.Item>
                         <Nav.Link eventKey={job.id}><JobsLeft job={job} /></Nav.Link>

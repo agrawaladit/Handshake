@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
   const today = new Date()
   var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
   const userData = {
-    company: req.body.company,
+    company_id: req.body.company,
     title: req.body.title,
     date: date,
     description: req.body.description,

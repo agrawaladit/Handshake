@@ -21,7 +21,6 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
 
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
@@ -38,6 +37,7 @@ class Profile extends Component {
       })
       return res
     })
+
 
   }
 
@@ -77,10 +77,9 @@ class Profile extends Component {
     // const education = this.state.education.map(edu => {
     //   return(<ProfileField t1="Education" t2={edu.school} todo={this.handleEducation} key={Math.random()}/>)
     // })
-
     console.log(this.state)
-    const ed = this.state.education
-    const ex = this.state.experience
+    const ed = this.state.education || {}
+    const ex = this.state.experience || {}
 
     return (
       <div className="container">
@@ -88,7 +87,7 @@ class Profile extends Component {
           <div className="col-xl-3">
             <ProfilePhoto state={this.state} />
             <ProfileSkill />
-            <ProfileInfo contact={this.state.contact} />
+            <ProfileInfo contact={this.state.contact || {}} />
           </div>
           <div className="col-xl-9">
             <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.state.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />

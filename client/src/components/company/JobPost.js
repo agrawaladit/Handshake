@@ -18,7 +18,7 @@ export default class JobPost extends Component {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            company: decoded.company
+            company: decoded.id
         })
     }
     

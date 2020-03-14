@@ -78,7 +78,7 @@ class ProfileCompany extends Component {
         const profile = info.image ? ('/uploads/company/image/'+info.image) : Landscape
         return (
             <Card>
-                <Card.Img variant="top" src={profile} style={{ height: '200px' }} />
+                <Card.Img variant="top" src={'/uploads/company/image/'+info.image} style={{ height: '200px' }} />
                 <Card.Body>
                     <Card.Title>
                         <input type="text" name="company" disabled={this.state.disable} value={this.state.company} className={this.state.inputClass} onChange={this.handleChange} placeholder="Add Company Name" style={{ fontSize: 50 }} />

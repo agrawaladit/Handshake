@@ -25,11 +25,12 @@ export default class JobsRight extends Component {
     }
 
     render() {
+        console.log(this.props.job)
         var job = this.props.job
         return (
             <div className="container-fluid pad-all">
                 <h2 className="font-weight-bold">{job.title}</h2>
-                <h3 className="font-weight-normal">{job.company}</h3>
+                <h3 className="font-weight-normal">{job.company.company}</h3>
                 <div className="row pad-all">
                     <p className="font-weight-light text-secondary mar-rt">{job.category}</p>
                     <p className="font-weight-light text-secondary mar-rt">{job.location}</p>

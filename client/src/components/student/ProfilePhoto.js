@@ -6,20 +6,30 @@ class ProfilePhoto extends Component {
     state = { 
         profile : Profile,
         info: '',
+        education: {},
+        experience: {},
+        contact: {},
         id: ''
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             info: nextProps.state,
+            education: nextProps.state.education || {},
+            experience: nextProps.state.experience || {},
+            contact: nextProps.state.contact || {},
             id : nextProps.state.id
         })
     }
 
     render() {
         const info = this.props.state
-        const profile = '/uploads/user/image/'+info.contact.image ? ('/uploads/user/image/'+info.contact.image) : this.state.profile
+        var profile = this.state.profile
+        try{
+        profile = info.contact.image ? ('/uploads/user/image/'+info.contact.image) : this.state.profile
         console.log(profile);
+        }
+        catch (err){}
         
         return (
             <div className="col-md-12 card mar-btm">
@@ -31,7 +41,7 @@ class ProfilePhoto extends Component {
                     </div>
                     <div>
                         <p className="text-muted">
-                            {info.education.major}
+                            {this.state.education.major}
                         </p>
                         <div className="pad-btm">
                             <button className="btn btn-success">Message</button>
