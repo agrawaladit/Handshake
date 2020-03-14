@@ -121,7 +121,7 @@ class Landing extends Component {
             />
           </Navbar.Brand>
         </Navbar>
-        <Form inline style={{ width: '55%' }}>
+        <Form inline style={{ width: '45%' }}>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-light">Search</Button>
         </Form>

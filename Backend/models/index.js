@@ -39,6 +39,6 @@ Company.hasMany(Job, {foreignKey: 'company_id'})
 Job.belongsTo(Company, {foreignKey: 'company_id'})
 
 
-db.sync()
+db.sync({force:true})
 
 module.exports = {Application, Job,User,UserContact,UserEducation,UserExperience,Company,Registration,Event}

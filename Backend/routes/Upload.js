@@ -63,18 +63,23 @@ router.post('/resume', function (req, res) {
     uploadResume(req, res, function (err) {
         console.log("Request file ---", req.file);
         console.log("Request data", req.body.id);
-        const userData = {
-            id: req.body.id,
-            resume: req.file.filename
-        }
 
-        UserContact.upsert(userData)
-            .then(user => {
-                console.log({ status: 'Resume Updated!' })
-            })
-            .catch(err => {
-                console.log('error: ' + err)
-            })
+        try{
+            const userData = {
+                id: req.body.id,
+                resume: req.file.filename
+            }
+    
+            UserContact.upsert(userData)
+                .then(user => {
+                    console.log({ status: 'Resume Updated!' })
+                })
+                .catch(err => {
+                    console.log('error: ' + err)
+                })
+        }
+        catch(err){}
+        
 
         if (!err) {
             return res.sendStatus(200).end();
@@ -98,18 +103,22 @@ router.post('/company', function (req, res) {
     uploadCompany(req, res, function (err) {
         console.log("Request file ---", req.file);
         console.log("Request data", req.body.id);
-        const userData = {
-            id: req.body.id,
-            image: req.file.filename
+        try{
+            const userData = {
+                id: req.body.id,
+                image: req.file.filename
+            }
+    
+            Company.upsert(userData)
+                .then(user => {
+                    console.log({ status: 'Company image Updated!' })
+                })
+                .catch(err => {
+                    console.log('error: ' + err)
+                })
         }
-
-        Company.upsert(userData)
-            .then(user => {
-                console.log({ status: 'Company image Updated!' })
-            })
-            .catch(err => {
-                console.log('error: ' + err)
-            })
+        catch(err){}
+        
 
         if (!err) {
             return res.sendStatus(200).end();
