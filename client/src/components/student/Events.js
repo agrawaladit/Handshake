@@ -16,6 +16,9 @@ class Events extends Component {
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
+        this.setState({
+            student_id: decoded.id
+        })
         getEvents().then(response => {
             if (response) {
                 this.setState({
@@ -30,18 +33,13 @@ class Events extends Component {
         getEducation(decoded.id).then(response => {
             if (response) {
                 this.setState({
-                    major: response.major,
-                    student_id: this.student_id
-                })
-            }
-            else {
-                this.setState({
-                    student_id: this.student_id
+                    major: response.major
                 })
             }
         })
             .catch(error => {
                 console.log(error)
+                console.log("s")
             })
     }
 
