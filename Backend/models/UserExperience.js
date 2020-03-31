@@ -1,40 +1,32 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const UserExperience = db.define('user_experience',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        },
-        company: {
-        type: Sequelize.STRING
-        },
-        title: {
-        type: Sequelize.STRING
-        },
-        location: {
-        type: Sequelize.STRING
-        },
-        description: {
-        type: Sequelize.STRING
-        },
-        duration: {
-        type: Sequelize.STRING
-        },
-        start_date: {
-        type: Sequelize.STRING
-        },
-        end_date: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const UserExperience = new Schema({
+    company: {
+        type: String
     },
+    title: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    duration: {
+        type: String
+    },
+    start_date: {
+        type: String
+    },
+    end_date: {
+        type: String
+    }
+},
     {
-        timestamps: false
+        timestamps: false,
+        _id : false
     }
 )
 

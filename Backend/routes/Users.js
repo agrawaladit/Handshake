@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const {User,UserContact,UserEducation,UserExperience} = require('../models')
+const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 process.env.SECRET_KEY = 'secret'
 router.use(cors())
 //Get user list
-router.get('/', (req, res) => User.findAll({
-    include: [UserContact,UserEducation,UserExperience]
-})
+router.get('/', (req, res) => User.find()
   .then(u => {
     res.send(u)
   })
@@ -28,70 +26,105 @@ router.post('/register', (req, res) => {
     created: today
   }
 
-  User.findOne({
-    where: {
-      email: req.body.email
+
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) return handleError(err);
+
+    if (!user) {
+      bcrypt.hash(req.body.password, 10, (err, hash) => {
+        userData.password = hash
+
+        const newUser = new User(userData)
+        newUser.save()
+          .then(user => {
+            console.log(user.email)
+            res.json({ status: user.email + ' Registered!' })
+          })
+          .catch(err => {
+            res.send('error: ' + err)
+          })
+      })
+    } else {
+      res.json({ error: 'User already exists' })
     }
-  })
-    //TODO bcrypt
-    .then(user => {
-      if (!user) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          userData.password = hash
-          User.create(userData)
-            .then(user => {
-              console.log(user.email)
-              res.json({ status: user.email + 'Registered!' })
-            })
-            .catch(err => {
-              res.send('error: ' + err)
-            })
-        })
-      } else {
-        res.json({ error: 'User already exists' })
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
+  });
+})
+
+router.post('/experience', (req, res) => {
+  const experienceData = {
+    company: req.body.company,
+    title: req.body.title,
+    description: req.body.description,
+    location: req.body.location,
+    start_date: req.body.start_date,
+    end_date: req.body.end_date,
+    duration: req.body.duration
+  }
+
+  User.findOneAndUpdate({ _id: req.body.id }, {$set:{experience:experienceData}}, { upsert: true }, function (err, doc) {
+    if (err) return res.send(500, { error: err });
+    return res.send('Succesfully saved.');
+  });
+})
+
+router.post('/education', (req, res) => {
+  const educationData = {
+    location: req.body.location,
+    degree: req.body.degree,
+    start_date: req.body.start_date,
+    end_date: req.body.end_date,
+    school: req.body.school,
+    major: req.body.major,
+    cgpa: req.body.cgpa,
+  }
+
+  User.findOneAndUpdate({ _id: req.body.id }, {$set:{education:educationData}}, { upsert: true }, function (err, doc) {
+    if (err) return res.send(500, { error: err });
+    return res.send('Succesfully saved.');
+  });
+})
+
+router.post('/contact', (req, res) => {
+  const contactData = {
+    email: req.body.email,
+    phone: req.body.phone,
+  }
+
+  User.findOneAndUpdate({ _id: req.body.id }, {$set:{contact:contactData}}, { upsert: true }, function (err, doc) {
+    if (err) return res.send(500, { error: err });
+    return res.send('Succesfully saved.');
+  });
 })
 
 router.post('/login', (req, res) => {
-  User.findOne({
-    where: {
-      email: req.body.email
-    }
-  })
-    .then(user => {
-      if (user) {
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-          let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-            expiresIn: 1440
-          })
-          res.send(token)
-        }
-      } else {
-        res.status(400).json({ error: 'User does not exist' })
+
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) return handleError(err);
+
+    if (user) {
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        let token = jwt.sign(user.toJSON(), process.env.SECRET_KEY, {
+          expiresIn: 1440
+        })
+        res.send(token)
       }
-    })
-    .catch(err => {
-      res.status(400).json({ error: err })
-    })
+    } else {
+      res.status(400).json({ error: 'User does not exist' })
+    }
+  });
 })
 
 router.get('/profile', (req, res) => {
-  User.findOne({
-    where: {
-      id: req.query.id
-    },
-    include: [UserContact,UserEducation,UserExperience]
-  })
-    .then(user => {
+
+  User.findById(req.query.id, function (err, user) {
+    if (err) return handleError(err);
+
+    if (user) {
       res.send(user)
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
+    } else {
+      res.send("User not found")
+    }
+  });
 })
 
 

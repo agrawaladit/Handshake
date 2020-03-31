@@ -13,10 +13,10 @@ class Profile extends Component {
     last_name: '',
     email: '',
     school: '',
-    education: [],
-    experience: [],
+    education: {},
+    experience: {},
     student: '',
-    contact: [],
+    contact: {},
     errors: {}
   }
 
@@ -24,16 +24,16 @@ class Profile extends Component {
 
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
-    getProfile(decoded.id).then(res => {
+    getProfile(decoded._id).then(res => {
       this.setState({
-        id: res.id,
+        id: res._id,
         first_name: res.first_name,
         last_name: res.last_name,
         email: res.email,
         school: res.school,
-        education: res.user_education,
-        experience: res.user_experience,
-        contact: res.user_contact
+        education: res.education,
+        experience: res.experience,
+        contact: res.contact
       })
       return res
     })
@@ -87,7 +87,7 @@ class Profile extends Component {
           <div className="col-xl-3">
             <ProfilePhoto state={this.state} />
             <ProfileSkill />
-            <ProfileInfo contact={this.state.contact || {}} />
+            <ProfileInfo contact={this.state.contact || {}} id={this.state.id}/>
           </div>
           <div className="col-xl-9">
             <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.state.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />

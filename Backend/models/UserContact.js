@@ -1,31 +1,23 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const UserContact = db.define('user_contact',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        },
-        email: {
-        type: Sequelize.STRING
-        },
-        phone: {
-        type: Sequelize.STRING
-        },
-        image: {
-        type: Sequelize.STRING
-        },
-        resume: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const UserContact = new Schema({
+    email: {
+        type: String
     },
+    phone: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    resume: {
+        type: String
+    }
+},
     {
-        timestamps: false
+        timestamps: false,
+        _id : false
     }
 )
 

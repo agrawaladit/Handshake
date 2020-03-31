@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Accordion, Card, Button, Row, Col, Container } from "react-bootstrap";
-import { setRegistrations, getEvents, getEducation } from '../UserFunctions'
+import { setRegistrations, getEvents, getProfile } from '../UserFunctions'
 import handshake from '../../handshake.png'
 import jwt_decode from 'jwt-decode'
 
@@ -30,10 +30,10 @@ class Events extends Component {
                 console.log(error)
             })
         
-        getEducation(decoded.id).then(response => {
+        getProfile(decoded.id).then(response => {
             if (response) {
                 this.setState({
-                    major: response.major
+                    major: response.education.major
                 })
             }
         })

@@ -68,7 +68,7 @@ export const login = user => {
 
 export const setEducation = user => {
   return axios
-    .post('education', qs.stringify({
+    .post('users/education', qs.stringify({
       school: user.school,
       id: user.id,
       major: user.major,
@@ -86,16 +86,16 @@ export const setEducation = user => {
     })
 }
 
-export const getEducation = id => {
-  return axios
-    .get('education?id=' + id)
-    .then(response => {
-      return response.data
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
+// export const getEducation = id => {
+//   return axios
+//     .get('education?id=' + id)
+//     .then(response => {
+//       return response.data
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+// }
 
 export const getProfile = id => {
   return axios
@@ -110,7 +110,7 @@ export const getProfile = id => {
 
 export const setExperience = user => {
   return axios
-    .post('experience', qs.stringify({
+    .post('users/experience', qs.stringify({
       company: user.company,
       title: user.title,
       id: user.id,
@@ -128,17 +128,17 @@ export const setExperience = user => {
     })
 }
 
-export const getExperience = id => {
-  return axios
-    .get('experience?id=' + id)
-    .then(response => {
-      console.log(response.data)
-      return response.data
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
+// export const getExperience = id => {
+//   return axios
+//     .get('experience?id=' + id)
+//     .then(response => {
+//       console.log(response.data)
+//       return response.data
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+// }
 
 
 export const setCompany = company => {
@@ -241,7 +241,7 @@ export const setStatus = (id, status) => {
 
 export const setUserContact = user => {
   return axios
-    .post('usercontact', qs.stringify({
+    .post('users/contact', qs.stringify({
       id: user.id,
       email: user.email,
       phone: user.phone
@@ -254,16 +254,16 @@ export const setUserContact = user => {
     })
 }
 
-export const getUserContact = id => {
-  return axios
-    .get('usercontact?id=' + id)
-    .then(response => {
-      return response.data
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
+// export const getUserContact = id => {
+//   return axios
+//     .get('usercontact?id=' + id)
+//     .then(response => {
+//       return response.data
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+// }
 
 export const getUsers = () => {
   return axios

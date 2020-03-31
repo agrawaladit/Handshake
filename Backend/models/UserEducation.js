@@ -1,40 +1,32 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const UserEducation = db.define('user_education',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        },
-        school: {
-        type: Sequelize.STRING
-        },
-        major: {
-        type: Sequelize.STRING
-        },
-        location: {
-        type: Sequelize.STRING
-        },
-        start_date: {
-        type: Sequelize.STRING
-        },
-        end_date: {
-        type: Sequelize.STRING
-        },
-        degree: {
-        type: Sequelize.STRING
-        },
-        cgpa: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const UserEducation = new Schema({
+    school: {
+        type: String
     },
+    major: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    start_date: {
+        type: String
+    },
+    end_date: {
+        type: String
+    },
+    degree: {
+        type: String
+    },
+    cgpa: {
+        type: String
+    }
+},
     {
-        timestamps: false
+        timestamps: false,
+        _id : false
     }
 )
 

@@ -5,8 +5,8 @@ import Upload from '../Upload'
 
 export default class ProfileInfo extends Component {
     state = {
-        id: this.props.contact.id,
-        email: this.props.contact.id,
+        id: "",
+        email: "",
         phone: "",
         disable: true,
         inputClass: 'border-0 mb-2 text-muted mar-btm',
@@ -15,7 +15,7 @@ export default class ProfileInfo extends Component {
 
     componentWillReceiveProps(props) {
         this.setState({
-            id: props.contact.id,
+            id: props.id,
             email: props.contact.email,
             phone: props.contact.phone
         })
