@@ -1,40 +1,36 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const Event = db.define('event_posting',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-        },
-        name: {
-        type: Sequelize.STRING
-        },
-        description: {
-        type: Sequelize.STRING
-        },
-        time: {
-        type: Sequelize.STRING
-        },
-        location: {
-        type: Sequelize.STRING
-        },
-        date: {
-        type: Sequelize.STRING
-        },
-        eligibility: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const eventSchema = new Schema({
+    name: {
+        type: String
     },
+    description: {
+        type: String
+    },
+    time: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    date: {
+        type: String
+    },
+    eligibility: {
+        type: String
+    },
+    company: {
+        type: Schema.Types.ObjectID,
+        ref: 'Company'
+    }
+},
     {
         timestamps: false
     }
 )
+
+const Event = mongoose.model('Event', eventSchema);
 
 
 module.exports = Event

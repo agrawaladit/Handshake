@@ -1,39 +1,34 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const Company = db.define('company',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-        },
-        company: {
-        type: Sequelize.STRING
-        },
-        email: {
-        type: Sequelize.STRING
-        },
-        password: {
-        type: Sequelize.STRING
-        },
-        location: {
-        type: Sequelize.STRING
-        },
-        description: {
-        type: Sequelize.STRING
-        },
-        image: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const companySchema = new Schema({
+    company: {
+        type: String,
+        required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    location: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    image: {
+        type: String
+    }
+},
     {
         timestamps: false
     }
 )
+
+const Company = mongoose.model('Company', companySchema);
 
 module.exports = Company

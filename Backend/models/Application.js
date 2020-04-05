@@ -1,25 +1,24 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const Application = db.define('job_application',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-        },
-        status: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const appSchema = new Schema({
+    status: {
+        type: String
     },
+    job: {
+        type: Schema.Types.ObjectID,
+        ref: 'Job'
+    },
+    student: {
+        type: Schema.Types.ObjectID,
+        ref: 'Student'
+    }
+},
     {
         timestamps: false
     }
 )
 
+const Application = mongoose.model('Application', appSchema);
 
 module.exports = Application

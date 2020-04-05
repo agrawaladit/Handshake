@@ -1,39 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const {Event, Company} = require('../models')
+const Event = require('../models/Event')
 
 router.use(cors())
 
 router.post('/', (req, res) => {
-    const today = new Date()
+    console.log(req.body)
     const userData = {
-        company_id: parseInt(req.body.company),
+        company: req.body.company,
         name: req.body.name,
         description: req.body.description,
         time: req.body.time,
         date: req.body.date,
         location: req.body.location,
-        eligibility: req.body.eligibility,
-        created: today
+        eligibility: req.body.eligibility
     }
-
-    Event.create(userData)
-        .then(user => {
-            res.json({ status: event.name + ' Updated!' })
+    
+    const newEvent = new Event(userData)
+    newEvent.save()
+        .then(event => {
+            res.json({ status: event.name + ' Registered!' })
         })
         .catch(err => {
             res.send('error: ' + err)
         })
 })
 
-router.get('/', (req, res) => Event.findAll({
-    include: [Company]
+
+router.get('/', (req, res) => {
+    Event.find()
+        .populate('company')
+        .exec(function (err, events) {
+            if (err) res.send(err)
+            res.send(events)
+        })
 })
-    .then(events => {
-        res.send(events)
-    })
-    .catch(error => console.log(error))
-)
+
 
 module.exports = router

@@ -8,6 +8,7 @@ import Register from './components/student/Register'
 import Profile from './components/student/Profile'
 import Applications from './components/student/Applications'
 import Events from './components/student/Events'
+import EventsView from './components/company/EventsView'
 import Students from './components/Students'
 import Jobs from './components/Jobs'
 import RegisterCompany from './components/company/RegisterCompany'
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path="/applications" component={Applications} />
             <Route exact path="/eventsc" component={EventsCompany} />
             <Route exact path="/events" component={Events} />
+            <Route exact path="/eventsview" component={EventsView} />
             <Route exact path="/students" component={Students} />
           </div>
         </div>

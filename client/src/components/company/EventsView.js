@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { getEvents } from '../UserFunctions'
 import jwt_decode from 'jwt-decode'
-import { Card, Col, Tab, Row, Nav,Container } from 'react-bootstrap'
+import { Card, Col, Tab, Row, Nav ,Container } from 'react-bootstrap'
 import handshake from '../../handshake.png'
 import EventsRightCompany from './EventsRightCompany'
 
-export default class Jobs extends Component {
+export default class EventsView extends Component {
 
     state = {
         events: [],
@@ -40,7 +40,7 @@ export default class Jobs extends Component {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            company: decoded.id
+            company: decoded._id
         })
     }
 
@@ -49,7 +49,7 @@ export default class Jobs extends Component {
         try {
             const events = this.state.events.filter(
                 event => {
-                    return (event.company_id === this.state.company)
+                    return (event.company.company === this.state.company)
                 }
             )
             

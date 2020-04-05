@@ -18,7 +18,7 @@ export default class EventPost extends Component {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            company: decoded.id
+            company: decoded._id
         })
     }
 

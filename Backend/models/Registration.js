@@ -1,22 +1,21 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const Registration = db.define('event_registration',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const regSchema = new Schema({
+    event: {
+        type: Schema.Types.ObjectID,
+        ref: 'Event'
     },
+    student: {
+        type: Schema.Types.ObjectID,
+        ref: 'Student'
+    }
+},
     {
         timestamps: false
     }
 )
 
+const Registration = mongoose.model('Registration', regSchema);
 
 module.exports = Registration

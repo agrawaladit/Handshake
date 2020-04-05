@@ -22,22 +22,22 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedT
 //     .catch(error => console.log('Error: ' + error))
 
 
-app.use(express.static(path.join(__dirname, '/public')))
+//app.use(express.static(path.join(__dirname, '/public')))
 
 app.use(bodyparser.urlencoded({
     extended: true
   }));
 
 app.use('/users', require('./routes/Users'))
-// app.use('/companies', require('./routes/Companies'))
+app.use('/companies', require('./routes/Companies'))
 // app.use('/education', require('./routes/UserEducations'))
 // app.use('/experience', require('./routes/UserExperiences'))
 // app.use('/companydetails', require('./routes/CompanyDetails'))
-// app.use('/jobs', require('./routes/Jobs'))
-// app.use('/applications', require('./routes/Applications'))
+app.use('/jobs', require('./routes/Jobs'))
+app.use('/applications', require('./routes/Applications'))
 // app.use('/usercontact', require('./routes/UserContacts'))
-// app.use('/events', require('./routes/Events'))
-// app.use('/registrations', require('./routes/Registrations'))
+app.use('/events', require('./routes/Events'))
+app.use('/registrations', require('./routes/Registrations'))
 // app.use('/upload', require('./routes/Upload'))
 
 

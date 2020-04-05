@@ -143,7 +143,7 @@ export const setExperience = user => {
 
 export const setCompany = company => {
   return axios
-    .post('companydetails', qs.stringify({
+    .post('companies/update', qs.stringify({
       company: company.company,
       email: company.email,
       location: company.location,
@@ -160,7 +160,7 @@ export const setCompany = company => {
 
 export const getCompany = id => {
   return axios
-    .get('companydetails?id=' + id)
+    .get('companies/profile?id=' + id)
     .then(response => {
       return response.data
     })

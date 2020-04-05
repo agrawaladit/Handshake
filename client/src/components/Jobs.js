@@ -46,7 +46,7 @@ export default class Jobs extends Component {
             console.log(decoded)
             this.setState({
                 mode: true,
-                student_id: decoded.id
+                student_id: decoded._id
             })
         }
         if (decoded.company) {

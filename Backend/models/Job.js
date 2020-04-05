@@ -1,43 +1,38 @@
-const Sequelize = require('sequelize')
-const db = require('../config/database')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const Job = db.define('job_posting',
-    {
-        id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-        },
-        title: {
-        type: Sequelize.STRING
-        },
-        date: {
-        type: Sequelize.STRING
-        },
-        deadline: {
-        type: Sequelize.STRING
-        },
-        location: {
-        type: Sequelize.STRING
-        },
-        salary: {
-        type: Sequelize.STRING
-        },
-        description: {
-        type: Sequelize.STRING
-        },
-        category: {
-        type: Sequelize.STRING
-        },
-        created: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-        }
+const jobSchema = new Schema({
+    title: {
+        type: String
     },
+    date: {
+        type: String
+    },
+    deadline: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    salary: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    category: {
+        type: String
+    },
+    company: {
+        type: Schema.Types.ObjectID,
+        ref: 'Company'
+    }
+},
     {
         timestamps: false
     }
 )
 
+const Job = mongoose.model('Job', jobSchema);
 
 module.exports = Job

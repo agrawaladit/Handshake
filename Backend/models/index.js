@@ -23,14 +23,14 @@ Registration.belongsTo(User, {foreignKey: 'student_id'})
 User.hasMany(Application, {foreignKey: 'student_id'})
 Application.belongsTo(User, {foreignKey: 'student_id'})
 
-User.hasOne(UserContact, {foreignKey: 'id'})
-UserContact.belongsTo(User, {foreignKey: 'id'})
+// User.hasOne(UserContact, {foreignKey: 'id'})
+// UserContact.belongsTo(User, {foreignKey: 'id'})
 
-User.hasOne(UserEducation, {foreignKey: 'id'})
-UserEducation.belongsTo(User, {foreignKey: 'id'})
+// User.hasOne(UserEducation, {foreignKey: 'id'})
+// UserEducation.belongsTo(User, {foreignKey: 'id'})
 
-User.hasOne(UserExperience, {foreignKey: 'id'})
-UserExperience.belongsTo(User, {foreignKey: 'id'})
+// User.hasOne(UserExperience, {foreignKey: 'id'})
+// UserExperience.belongsTo(User, {foreignKey: 'id'})
 
 Company.hasMany(Event, {foreignKey: 'company_id'})
 Event.belongsTo(Company, {foreignKey: 'company_id'})

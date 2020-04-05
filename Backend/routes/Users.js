@@ -26,9 +26,8 @@ router.post('/register', (req, res) => {
     created: today
   }
 
-
   User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) return handleError(err);
+    if (err) res.send(err);
 
     if (!user) {
       bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -99,7 +98,7 @@ router.post('/contact', (req, res) => {
 router.post('/login', (req, res) => {
 
   User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) return handleError(err);
+    if (err) res.send(err);
 
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -117,12 +116,12 @@ router.post('/login', (req, res) => {
 router.get('/profile', (req, res) => {
 
   User.findById(req.query.id, function (err, user) {
-    if (err) return handleError(err);
+    if (err) res.send(err);
 
-    if (user) {
+    else if (user) {
       res.send(user)
     } else {
-      res.send("User not found")
+      res.write("User not found")
     }
   });
 })

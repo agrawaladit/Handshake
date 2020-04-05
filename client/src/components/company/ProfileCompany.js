@@ -27,12 +27,12 @@ class ProfileCompany extends Component {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            id: decoded.id,
+            id: decoded._id,
             company: decoded.company,
             email: decoded.email,
             location: decoded.location,
         })
-        getCompany(decoded.id).then(response => {
+        getCompany(decoded._id).then(response => {
             if (response) {
                 this.setState({
                     info: response

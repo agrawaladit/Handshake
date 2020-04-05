@@ -15,7 +15,7 @@ class EventNavbar extends Component {
                         </Link>
                     </Nav>
                     <Nav>
-                        <Link to="/events" className="nav-link">
+                        <Link to="/eventsview" className="nav-link">
                             View
                         </Link>
                     </Nav>
