@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { login } from './UserFunctions'
-import jwt_decode from 'jwt-decode'
+import {connect} from 'react-redux'
 
 class Login extends Component {
   constructor() {
@@ -28,21 +27,7 @@ class Login extends Component {
       category: this.state.category
     }
 
-    login(user)
-      .then(res => {
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        
-        if (res && decoded.school) {
-          this.props.history.push(`/profile`)
-        }
-        if (res && decoded.company) {
-          this.props.history.push(`/profilec`)
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.props.login(user, this.props)
   }
 
   render() {
@@ -101,4 +86,11 @@ class Login extends Component {
   }
 }
 
-export default Login
+
+const mapDispatchToState = (dispatch) => {
+  return {
+    login: (user, props) => {dispatch({type: 'LOGIN', user: user, props: props})}
+  }
+}
+
+export default connect(null, mapDispatchToState)(Login)

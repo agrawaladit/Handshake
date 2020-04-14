@@ -16,7 +16,7 @@ export default class EventsCompany extends Component {
                     <Row>
                         <Container>
                             <Route exact path="/eventsc" component={EventPost} />
-                            <Route exact path="/eventsview" component={EventsView} />
+                            <Route exact path="/events" component={EventsView} />
                             <Route exact path="/profiles" component={Profile} />
                         </Container>
                     </Row>
