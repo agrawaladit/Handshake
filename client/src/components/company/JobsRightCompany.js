@@ -25,7 +25,7 @@ class JobsRightCompany extends Component {
             
             if (response) {
                 this.setState({
-                    applications: response.filter((app) => {return app.job === this.state.job_id})
+                    applications: response
                 })
             }
         })
@@ -55,8 +55,10 @@ class JobsRightCompany extends Component {
 
 
     render() {
+        if (this.state.applications[0]){
         try {
-            var application = this.state.applications.map(application => {
+            const a = this.state.applications.filter((app) => {return app.job === this.state.job_id})
+            var application = a.map(application => {
                 return (
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey={application.student}>
@@ -78,7 +80,7 @@ class JobsRightCompany extends Component {
                                         <MyModal id={application._id}/>
                                     </Col>
                                     <Col md={3}>
-                                        <Link to={["/profile/" + application.student]} className="nav-link">
+                                        <Link to={"/profile/"+application.student} className="nav-link">
                                             <Button variant="primary" >Go to Profile</Button>
                                         </Link>
                                     </Col>
@@ -98,6 +100,13 @@ class JobsRightCompany extends Component {
                 {application}
             </Accordion>
         )
+        }
+        else {
+            return (
+                <Accordion>
+                </Accordion>
+            )
+        }
     }
 }
 

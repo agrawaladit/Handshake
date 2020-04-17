@@ -99,7 +99,7 @@ export const setEducation = user => {
 
 export const getProfile = id => {
   return axios
-    .get('users/profile?id=' + id)
+    .get('http://localhost:5000/users/profile?id=' + id)
     .then(response => {
       return response.data
     })
@@ -341,6 +341,32 @@ export const upload = reg => {
     }), config)
     .then(response => {
       console.log("Registered")
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const getMessages = () => {
+  return axios
+    .get('http://localhost:5000/messages')
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const setMessages = job => {
+  return axios
+    .post('http://localhost:5000/messages', qs.stringify({
+      company: job.company,
+      student: job.student,
+      messages: job.messages
+    }), config)
+    .then(response => {
+      console.log("Message Added")
     })
     .catch(err => {
       console.log(err)

@@ -12,6 +12,8 @@ const loginReducer = (state = initState, action) => {
           const decoded = jwt_decode(token)
           
           if (res && decoded.school) {
+            console.log(action.props.history);
+            
             action.props.history.push(`/profile`)
           }
           if (res && decoded.company) {

@@ -45,7 +45,7 @@ class Landing extends Component {
           </Link>
         </Nav>
         <Link to="/students" className="nav-link">
-            Students
+          Students
           </Link>
         <Nav>
           <Link to="/profilec" className="nav-link">
@@ -63,6 +63,11 @@ class Landing extends Component {
     const userLink = (
       <Nav>
         <Nav>
+          <Link to="/messages/Rachel" className="nav-link">
+            Messeges
+          </Link>
+        </Nav>
+        <Nav>
           <Link to="/jobs" className="nav-link">
             Jobs
           </Link>
@@ -78,7 +83,7 @@ class Landing extends Component {
           </Link>
         </Nav>
         <Link to="/students" className="nav-link">
-            Students
+          Students
           </Link>
         <Nav>
           <Link to="/profile" className="nav-link">
@@ -103,10 +108,10 @@ class Landing extends Component {
         var linkSwitch = companyLink
       }
     }
-    catch(err) {
+    catch (err) {
       console.log("Login Mode");
     }
-    
+
 
     return (
       <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight" >

@@ -46,8 +46,6 @@ router.get('/', (req, res) => {
     Application.find()
     .exec(function(err, apps){
         if (err) res.send(err)
-        console.log(apps);
-        
         res.send(apps)
     })
 })

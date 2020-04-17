@@ -42,7 +42,6 @@ class Students extends Component {
     render() {
 
         try {
-            console.log(this.props.users)
             const users = this.props.users.filter(user => {
                 var name = user.first_name + ' ' + user.last_name
                 return (

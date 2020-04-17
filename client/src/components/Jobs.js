@@ -60,7 +60,6 @@ export default class Jobs extends Component {
 
 
     render() {
-        console.log(this.state.jobs);
         
         const jobs = this.state.mode ? (
             this.state.jobs.filter(

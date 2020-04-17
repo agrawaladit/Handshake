@@ -5,40 +5,25 @@ import ProfileField from './ProfileField'
 import ProfileSkill from './ProfileSkill'
 import ProfileInfo from './ProfileInfo'
 import { setEducation, setExperience, getProfile } from '../UserFunctions'
+import { connect } from 'react-redux'
+import { get_profile, set_edu, set_exp } from '../../actions/actions'
 
 class Profile extends Component {
-  state = {
-    id: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    school: '',
-    education: {},
-    experience: {},
-    student: '',
-    contact: {},
-    errors: {}
-  }
 
   componentDidMount() {
-
-    const token = localStorage.usertoken
-    const decoded = jwt_decode(token)
-    getProfile(decoded._id).then(res => {
-      this.setState({
-        id: res._id,
-        first_name: res.first_name,
-        last_name: res.last_name,
-        email: res.email,
-        school: res.school,
-        education: res.education,
-        experience: res.experience,
-        contact: res.contact
-      })
+    let id = ''
+    if (this.props.id) {
+      id = this.props.id
+    }
+    else {
+      const token = localStorage.usertoken
+      const decoded = jwt_decode(token)
+      id = decoded._id
+    }
+    getProfile(id).then(res => {
+      this.props.get_profile(res)
       return res
     })
-
-
   }
 
   handleEducation(user) {
@@ -55,6 +40,7 @@ class Profile extends Component {
     setEducation(tempUser).then(res => {
       console.log("education data added")
     })
+    // this.props.set_edu(tempUser)
   }
 
   handleExperience(user) {
@@ -71,27 +57,25 @@ class Profile extends Component {
     setExperience(tempUser).then(res => {
       console.log("experience data added")
     })
+    //this.props.set_exp(tempUser)
   }
 
   render() {
-    // const education = this.state.education.map(edu => {
-    //   return(<ProfileField t1="Education" t2={edu.school} todo={this.handleEducation} key={Math.random()}/>)
-    // })
-    console.log(this.state)
-    const ed = this.state.education || {}
-    const ex = this.state.experience || {}
+    console.log(this.props.profile)
+    const ed = this.props.profile.education || {}
+    const ex = this.props.profile.experience || {}
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-xl-3">
-            <ProfilePhoto state={this.state} />
+            <ProfilePhoto state={this.props.profile} />
             <ProfileSkill />
-            <ProfileInfo contact={this.state.contact || {}} id={this.state.id}/>
+            <ProfileInfo contact={this.props.profile.contact || {}} id={this.props.profile.id} />
           </div>
           <div className="col-xl-9">
-            <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.state.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />
-            <ProfileField t1="Experience" t2="Demo" todo={this.handleExperience} eduComp={false} t2={ex.company} id={this.state.id} f1={ex.title} f2={ex.location} f3={ex.duration} f4={ex.description} f5={ex.start_date} f6={ex.end_date} />
+            <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.props.profile.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />
+            <ProfileField t1="Experience" t2="Demo" todo={this.handleExperience} eduComp={false} t2={ex.company} id={this.props.profile.id} f1={ex.title} f2={ex.location} f3={ex.duration} f4={ex.description} f5={ex.start_date} f6={ex.end_date} />
           </div>
         </div>
       </div>
@@ -99,4 +83,12 @@ class Profile extends Component {
   }
 }
 
-export default Profile
+const mapStateToProps = (state, ownProps) => {
+  let id = ownProps.match.params.id
+  return {
+    profile: state.profileReducer,
+    id: id
+  }
+}
+
+export default connect(mapStateToProps, { get_profile, set_edu, set_exp })(Profile)

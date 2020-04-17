@@ -123,6 +123,8 @@ router.post('/login', (req, res) => {
 
 router.get('/profile', (req, res) => {
 
+  console.log(req);
+  
   User.findById(req.query.id, function (err, user) {
     if (err) res.send(err);
 
