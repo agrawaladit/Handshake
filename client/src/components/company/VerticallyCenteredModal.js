@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import { Document, Page } from 'react-pdf';
-import { getProfile } from '../UserFunctions'
+import { Modal, Button ,Card} from 'react-bootstrap'
+import Resume from '../../Resume.png'
 
 
 
@@ -11,21 +10,6 @@ export default class VerticallyCenteredModal extends Component {
         this.state = {
             url: ''
         }
-    }
-
-    componentDidMount() {
-        getProfile(this.props.id).then(response => {
-
-            if (response) {
-                this.setState({
-                    url: '/uploads/user/resume/' + response.user_contact.resume
-                })
-                console.log('/uploads/user/resume/' + response.user_contact.resume)
-            }
-        })
-            .catch(error => {
-                console.log(error)
-            })
     }
 
 
@@ -39,13 +23,11 @@ export default class VerticallyCenteredModal extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Modal heading
+                        Resume
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h4 href={this.state.url}>Resume</h4>
-                    <Document file={this.state.url}>
-                    </Document>
+                <Card.Img variant="top" src={Resume} style={{ height: '200px' }} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.props.onHide}>Close</Button>

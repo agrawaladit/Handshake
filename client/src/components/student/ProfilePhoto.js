@@ -28,8 +28,7 @@ class ProfilePhoto extends Component {
         const info = this.props.state
         var profile = this.state.profile
         try {
-            profile = info.contact.image ? ('/uploads/user/image/' + info.contact.image) : this.state.profile
-            console.log(profile);
+            profile = this.state.profile
         }
         catch (err) { }
 
