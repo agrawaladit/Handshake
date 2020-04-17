@@ -63,7 +63,7 @@ class Landing extends Component {
     const userLink = (
       <Nav>
         <Nav>
-          <Link to="/messages/Rachel" className="nav-link">
+          <Link to={`/messages/${'Rachel'}`} className="nav-link">
             Messeges
           </Link>
         </Nav>

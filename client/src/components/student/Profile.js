@@ -10,6 +10,10 @@ import { get_profile, set_edu, set_exp } from '../../actions/actions'
 
 class Profile extends Component {
 
+  state = {
+    a : ''
+  }
+
   componentDidMount() {
     let id = ''
     if (this.props.id) {
@@ -24,6 +28,7 @@ class Profile extends Component {
       this.props.get_profile(res)
       return res
     })
+    this.setState({a:'b'})
   }
 
   handleEducation(user) {

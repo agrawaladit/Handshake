@@ -46,7 +46,7 @@ class ProfilePhoto extends Component {
                             {this.state.education.major}
                         </p>
                         <div className="pad-btm">
-                            <Link to="/messages/Ralph Lauren" className="nav-link">
+                            <Link  to={`/messages/${'Ralph Lauren'}`} className="nav-link">
                             <button className="btn btn-success" value={info.first_name}>Message</button>
                             </Link>
                         </div>

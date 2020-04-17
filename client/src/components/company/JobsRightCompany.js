@@ -80,7 +80,7 @@ class JobsRightCompany extends Component {
                                         <MyModal id={application._id}/>
                                     </Col>
                                     <Col md={3}>
-                                        <Link to={"/profile/"+application.student} className="nav-link">
+                                        <Link to={`/profile/${application.student}`} className="nav-link">
                                             <Button variant="primary" >Go to Profile</Button>
                                         </Link>
                                     </Col>
