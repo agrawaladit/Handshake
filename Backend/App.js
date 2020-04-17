@@ -6,7 +6,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
 
-const uri = "mongodb+srv://root:aditya@handshake-8jewx.mongodb.net/test?retryWrites=true&w=majority"
+const uri = "mongodb+srv://handshake:handshake@handshake-l76ib.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
 );
 const connection = mongoose.connection;
