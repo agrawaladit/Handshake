@@ -59,24 +59,20 @@ uploadResume = multer({
     limits: { fileSize: 1000000 },
 }).single("myImage");
 
-router.post('/resume', function (req, res) {
+router.post('/resume', (req, res) => {
     uploadResume(req, res, function (err) {
         console.log("Request file ---", req.file);
         console.log("Request data", req.body.id);
 
         try{
             const userData = {
-                id: req.body.id,
                 resume: req.file.filename
             }
     
-            UserContact.upsert(userData)
-                .then(user => {
-                    console.log({ status: 'Resume Updated!' })
-                })
-                .catch(err => {
-                    console.log('error: ' + err)
-                })
+            User.findOneAndUpdate({ _id: req.body.id }, {$set:{education:userData}}, { upsert: true }, function (err, doc) {
+                if (err) return res.send(500, { error: err });
+                return res.send('Succesfully saved.');
+              });
         }
         catch(err){}
         
@@ -99,23 +95,15 @@ uploadCompany = multer({
     limits: { fileSize: 1000000 },
 }).single("myImage");
 
-router.post('/company', function (req, res) {
+router.post('/company', (req, res) => {
     uploadCompany(req, res, function (err) {
         console.log("Request file ---", req.file);
         console.log("Request data", req.body.id);
         try{
-            const userData = {
-                id: req.body.id,
-                image: req.file.filename
-            }
-    
-            Company.upsert(userData)
-                .then(user => {
-                    console.log({ status: 'Company image Updated!' })
-                })
-                .catch(err => {
-                    console.log('error: ' + err)
-                })
+            Company.findOneAndUpdate({ _id: req.body.id }, {$set:{image:req.file.filename }}, { upsert: true }, function (err, doc) {
+                if (err) return res.send(500, { error: err });
+                return res.send('Succesfully saved.');
+              });
         }
         catch(err){}
         

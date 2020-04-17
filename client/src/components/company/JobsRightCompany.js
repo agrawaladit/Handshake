@@ -41,17 +41,17 @@ class JobsRightCompany extends Component {
         )
     }
 
-    getPath = id => {
-        getProfile(id).then(response => {
+    // getPath = id => {
+    //     getProfile(id).then(response => {
             
-            if (response) {
-                ('/uploads/company/image/'+response.user_contact.resume)
-            }
-        })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+    //         if (response) {
+    //             ('/uploads/company/image/'+response.user_contact.resume)
+    //         }
+    //     })
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
+    // }
 
 
     render() {
