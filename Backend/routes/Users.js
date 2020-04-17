@@ -8,12 +8,20 @@ const bcrypt = require('bcrypt')
 process.env.SECRET_KEY = 'secret'
 router.use(cors())
 //Get user list
-router.get('/', (req, res) => User.find()
-  .then(u => {
-    res.send(u)
+// router.get('/', (req, res) => User.find()
+//   .then(u => {
+//     res.send(u)
+//   })
+//   .catch(error => console.log(error))
+// )
+
+router.get('/', (req, res) => {
+  User.find()
+  .exec(function(err, users){
+      if (err) res.send(err)
+      res.send(users)
   })
-  .catch(error => console.log(error))
-)
+})
 
 router.post('/register', (req, res) => {
   const today = new Date()

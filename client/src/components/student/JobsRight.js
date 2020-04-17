@@ -12,7 +12,7 @@ export default class JobsRight extends Component {
     static getDerivedStateFromProps(props, state) {
         return {
             student_id: props.sid,
-            job_id: props.job.id,
+            job_id: props.job._id,
             status: 'Pending'
         }
     }

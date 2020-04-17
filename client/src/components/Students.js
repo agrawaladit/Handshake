@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { getUsers } from './UserFunctions'
 import handshake from '../handshake.png'
 import { Container, Card, Row, Col, Button } from 'react-bootstrap'
-import {Link, withRouter} from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import {get_users} from '../actions/actions'
 
 class Students extends Component {
 
     state = {
-        users: [],
         s_name: '',
         c_name: '',
         major: ''
@@ -19,17 +20,21 @@ class Students extends Component {
         })
     }
 
-
     componentDidMount() {
         getUsers().then(response => {
-            if (response) {
-                this.setState({
-                    users: response
-                })
-            }
+            this.props.get_users(response)
+            this.setState({
+                s_name: '',
+                c_name: '',
+                major: ''
+            })
+            
         })
             .catch(error => {
                 console.log(error)
+                return {
+                    users: ['no data']
+                }
             })
     }
 
@@ -37,10 +42,11 @@ class Students extends Component {
     render() {
 
         try {
-            const users = this.state.users.filter(user => {
+            console.log(this.props.users)
+            const users = this.props.users.filter(user => {
                 var name = user.first_name + ' ' + user.last_name
                 return (
-                    (user.user_education.major.toLowerCase().indexOf(this.state.major.toLowerCase()) !== -1) &&
+                    (user.education.major.toLowerCase().indexOf(this.state.major.toLowerCase()) !== -1) &&
                     (user.school.toLowerCase().indexOf(this.state.c_name.toLowerCase()) !== -1) &&
                     (name.toLowerCase().indexOf(this.state.s_name.toLowerCase()) !== -1))
             })
@@ -54,7 +60,7 @@ class Students extends Component {
                             <Col xs={8} className='pad-all'>
                                 <Card.Title>{[user.first_name + ' ' + user.last_name]}</Card.Title>
                                 <Card.Subtitle className="mb-2">{user.school}</Card.Subtitle><br />
-                                <Card.Subtitle className="mb-2 text-muted">Major: {user.user_education.major}</Card.Subtitle>
+                                <Card.Subtitle className="mb-2 text-muted">Major: {user.education.major}</Card.Subtitle>
                             </Col>
                             <Col xs={2}>
                                 <Link to="/profile" className="nav-link">
@@ -67,7 +73,7 @@ class Students extends Component {
             })
         }
         catch (err) {
-            console.log("Data loading");
+            console.log(err);
         }
 
         return (
@@ -95,4 +101,8 @@ class Students extends Component {
     }
 }
 
-export default Students
+const mapStateToProps = (state) => ({
+    users: state.studentsReducer.users
+})
+
+export default connect(mapStateToProps,{get_users})(Students)

@@ -41,9 +41,9 @@ export default class Jobs extends Component {
 
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-
+        
         if (decoded.school) {
-            console.log(decoded)
+            
             this.setState({
                 mode: true,
                 student_id: decoded._id
@@ -59,7 +59,7 @@ export default class Jobs extends Component {
 
 
     render() {
-        console.log(this.state.jobs);
+        console.log(this.state);
         
         const jobs = this.state.mode ? (
             this.state.jobs.filter(
@@ -82,7 +82,7 @@ export default class Jobs extends Component {
             var jobsLeftValues = jobs.map(job => {
                 return (
                     <Nav.Item>
-                        <Nav.Link eventKey={job.id}><JobsLeft job={job} /></Nav.Link>
+                        <Nav.Link eventKey={job._id}><JobsLeft job={job} /></Nav.Link>
                     </Nav.Item>
                 )
             })
@@ -97,7 +97,7 @@ export default class Jobs extends Component {
                 (
                     this.state.jobs.map(job => {
                         return (
-                            <Tab.Pane eventKey={job.id}>
+                            <Tab.Pane eventKey={job._id}>
                                 <JobsRight job={job} sid={this.state.student_id} />
                             </Tab.Pane>
                         )
@@ -105,7 +105,7 @@ export default class Jobs extends Component {
                 ) : (
                     this.state.jobs.map(job => {
                         return (
-                            <Tab.Pane eventKey={job.id}>
+                            <Tab.Pane eventKey={job._id}>
                                 <JobsRightCompany job={job} />
                             </Tab.Pane>
                         )

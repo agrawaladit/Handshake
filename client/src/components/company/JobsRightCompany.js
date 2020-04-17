@@ -15,7 +15,7 @@ class JobsRightCompany extends Component {
 
     static getDerivedStateFromProps(props, state) {
         return {
-            job_id: props.job.id
+            job_id: props.job._id
         }
     }
 
@@ -25,7 +25,7 @@ class JobsRightCompany extends Component {
             
             if (response) {
                 this.setState({
-                    applications: response.filter((app) => {return app.job_id === this.state.job_id})
+                    applications: response.filter((app) => {return app.job === this.state.job_id})
                 })
             }
         })
@@ -90,7 +90,7 @@ class JobsRightCompany extends Component {
             })
         }
         catch (err) {
-            console.log("Applications loading");
+            console.log(err);
         }
 
         return (
