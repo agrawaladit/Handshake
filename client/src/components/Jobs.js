@@ -126,10 +126,10 @@ export default class Jobs extends Component {
                     <form class="form-inline col-md-3">
                         <input class="form-control w-100" type="search" placeholder="Job Titles" value={this.state.search_title} onChange={this.updateSearch} name="search_title" />
                     </form>
-                    <form class="form-inline col-md-3">
+                    <form class="form-inline col-md-2">
                         <input class="form-control w-100" type="search" placeholder="Location" value={this.state.search_location} onChange={this.updateSearch} name="search_location" />
                     </form>
-                    <Col md={3}>
+                    <Col md={2}>
                         <Form.Control className="text-muted" as="select" onChange={this.updateSearch} value={this.state.search_category} name="search_category">
                             <option value="" hidden>Filter Category</option>
                             <option value="">All</option>
@@ -137,6 +137,13 @@ export default class Jobs extends Component {
                             <option>Full Time</option>
                             <option>Co-op</option>
                             <option>Part Time</option>
+                        </Form.Control>
+                    </Col>
+                    <Col md={2}>
+                        <Form.Control className="text-muted" as="select" name="sort">
+                            <option value="" hidden>Sort</option>
+                            <option>Ascending</option>
+                            <option>Descending</option>
                         </Form.Control>
                     </Col>
                 </nav>
