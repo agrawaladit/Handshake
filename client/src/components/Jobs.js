@@ -41,12 +41,13 @@ export default class Jobs extends Component {
 
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        
+
         if (decoded.school) {
-            
+            console.log(decoded)
             this.setState({
                 mode: true,
-                student_id: decoded._id
+                student_id: decoded._id,
+                student_name: decoded.first_name + " " + decoded.last_name
             })
         }
         if (decoded.company) {
@@ -59,7 +60,7 @@ export default class Jobs extends Component {
 
 
     render() {
-        console.log(this.state);
+        console.log(this.state.jobs);
         
         const jobs = this.state.mode ? (
             this.state.jobs.filter(
@@ -98,7 +99,7 @@ export default class Jobs extends Component {
                     this.state.jobs.map(job => {
                         return (
                             <Tab.Pane eventKey={job._id}>
-                                <JobsRight job={job} sid={this.state.student_id} />
+                                <JobsRight job={job} sid={this.state.student_id} name={this.state.student_name} />
                             </Tab.Pane>
                         )
                     })
@@ -149,7 +150,7 @@ export default class Jobs extends Component {
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                         <Row>
                             <Col sm={4}>
-                                <Nav variant="pills" className="flex-column">
+                                <Nav variant="tabs" className="flex-column">
                                     {jobsLeftValues}
                                 </Nav>
                             </Col>

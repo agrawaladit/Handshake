@@ -18,6 +18,7 @@ router.post('/', (req, res) => {
     const appData = {
         student: (req.body.student_id),
         job: (req.body.job_id),
+        student_name: req.body.student_name,
         status: req.body.status
     }
 
@@ -39,36 +40,14 @@ router.post('/', (req, res) => {
             res.json({ error: 'Job Already Applied' })
         }
     });
-
-
-    // Application.findOne({
-    //     student_id: (req.body.student_id),
-    //     job_id: (req.body.job_id),
-    // })
-    //     .then(application => {
-    //         if (!application) {
-    //             Application.create(appData)
-    //                 .then(app => {
-    //                     res.json({ status: 'Added!' })
-    //                 })
-    //                 .catch(err => {
-    //                     res.send('error: ' + err)
-    //                 })
-    //         } else {
-    //             res.json({ error: 'Job Already Applied' })
-    //         }
-    //     })
-    //     .catch(err => {
-    //         res.send('error: ' + err)
-    //     })
 })
 
 router.get('/', (req, res) => {
     Application.find()
-    .populate('student')
-    .populate('job')
     .exec(function(err, apps){
         if (err) res.send(err)
+        console.log(apps);
+        
         res.send(apps)
     })
 })

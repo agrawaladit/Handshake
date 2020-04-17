@@ -59,15 +59,15 @@ class JobsRightCompany extends Component {
             var application = this.state.applications.map(application => {
                 return (
                     <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey={application.student_id}>
-                            {application.user.first_name + " " + application.user.last_name}
+                        <Accordion.Toggle as={Card.Header} eventKey={application.student}>
+                            {application.student_name}
                         </Accordion.Toggle>
-                        <Accordion.Collapse eventKey={application.student_id}>
+                        <Accordion.Collapse eventKey={application.student}>
                             <Card.Body>
                                 <Form.Label>Current Status : {application.status}</Form.Label>
                                 <Row>
                                     <Col md={5} >
-                                        <Form.Control className="mar-top" as="select" name='category' onChange={this.onChange} id={application.id} value={this.state.category}>
+                                        <Form.Control className="mar-top" as="select" name='category' onChange={this.onChange} id={application._id} value={this.state.category}>
                                             <option value="" hidden>Change Status</option>
                                             <option>Pending</option>
                                             <option>Reviewed</option>
@@ -75,10 +75,10 @@ class JobsRightCompany extends Component {
                                         </Form.Control>
                                     </Col>
                                     <Col md={4} >
-                                        <MyModal id={application.id}/>
+                                        <MyModal id={application._id}/>
                                     </Col>
                                     <Col md={3}>
-                                        <Link to={["/profile/" + application.student_id]} className="nav-link">
+                                        <Link to={["/profile/" + application.student]} className="nav-link">
                                             <Button variant="primary" >Go to Profile</Button>
                                         </Link>
                                     </Col>

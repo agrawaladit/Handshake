@@ -1,17 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const jobSchema = require('./Job')
-const userSchema = require('./User')
 
 const appSchema = new Schema({
     status: {
         type: String
     },
     job: {
-        type: jobSchema
+        type: Schema.Types.ObjectId,
+        ref: 'Job'
     },
     student: {
-        type: userSchema
+        type: Schema.Types.ObjectId,
+        ref: 'Student'
+    },
+    student_name: {
+        type: String
     }
 },
     {

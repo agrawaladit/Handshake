@@ -215,6 +215,7 @@ export const setApplications = app => {
     .post('applications', qs.stringify({
       student_id: app.student_id,
       job_id: app.job_id,
+      student_name: app.student_name,
       status: app.status
     }), config)
     .then(response => {

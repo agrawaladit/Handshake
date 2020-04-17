@@ -5,7 +5,7 @@
   "main": "App.js",
   "scripts": {
     "start": "node App.js",
-    "dev": "nodemon App.js"
+    "dev": "nodemon App.js --ignore client"
   },
   "author": "",
   "license": "ISC",

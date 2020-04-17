@@ -13,6 +13,7 @@ export default class JobsRight extends Component {
         return {
             student_id: props.sid,
             job_id: props.job._id,
+            student_name: props.name,
             status: 'Pending'
         }
     }
