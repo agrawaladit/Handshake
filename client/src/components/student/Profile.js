@@ -79,8 +79,8 @@ class Profile extends Component {
             <ProfileInfo contact={this.props.profile.contact || {}} id={this.props.profile.id} />
           </div>
           <div className="col-xl-9">
-            <ProfileField t1="Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.props.profile.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />
-            <ProfileField t1="Experience" t2="Demo" todo={this.handleExperience} eduComp={false} t2={ex.company} id={this.props.profile.id} f1={ex.title} f2={ex.location} f3={ex.duration} f4={ex.description} f5={ex.start_date} f6={ex.end_date} />
+            <ProfileField t1="Bachelors Education" g1="Masters Education" t2="Demo" todo={this.handleEducation} eduComp={true} t2={ed.school} id={this.props.profile.id} f1={ed.degree} f2={ed.location} f3={ed.major} f4={ed.cgpa} f5={ed.start_date} f6={ed.end_date} />
+            <ProfileField t1="Experience" g1="Experience" t2="Demo" todo={this.handleExperience} eduComp={false} t2={ex.company} id={this.props.profile.id} f1={ex.title} f2={ex.location} f3={ex.duration} f4={ex.description} f5={ex.start_date} f6={ex.end_date} />
           </div>
         </div>
       </div>

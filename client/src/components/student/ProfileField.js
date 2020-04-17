@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, Row } from 'react-bootstrap'
+import { Card, Button, Row , Container} from 'react-bootstrap'
 
 class ProfileField extends Component {
     state = {
@@ -11,6 +11,7 @@ class ProfileField extends Component {
         f4: "",
         f5: "",
         f6: "",
+        g1: "",
         disable: true,
         inputClass: 'border-0 mb-2 text-muted',
         descClass: 'border-0 mb-0',
@@ -27,6 +28,7 @@ class ProfileField extends Component {
             f4: props.f4,
             f5: props.f5,
             f6: props.f6,
+            g1: props.g1
         })
     }
     
@@ -59,6 +61,7 @@ class ProfileField extends Component {
             f4: this.props.eduComp ? "Add CGPA" : "Add Description"
         }
         return (
+            <Container>
             <Card style={{ width: '100%' }} className="mar-btm" >
                 <Card.Body>
                     <Card.Title>{this.props.t1}</Card.Title>
@@ -74,6 +77,23 @@ class ProfileField extends Component {
                     <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
                 </Card.Body>
             </Card>
+            <Card style={{ width: '100%' }} className="mar-btm" >
+                <Card.Body>
+                    <Card.Title>{this.props.g1}</Card.Title>
+                    <input type="text" name="subtitle" disabled={this.state.disable} value={this.state.subtitle} className={this.state.inputClass} onChange={this.handleChange} placeholder={ph.subtitle} />
+                    <Card.Text>
+                        <input type="text" name="f1" disabled={this.state.disable} value={this.state.f1} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f1}/><br />
+                        {"Start Date: "}<input type="date" name="f5" disabled={this.state.disable} value={this.state.f5} className={this.state.descClass} onChange={this.handleChange}/>
+                        {"End Date: "}<input type="date" name="f6" disabled={this.state.disable} value={this.state.f6} className={this.state.descClass} onChange={this.handleChange} /><br />
+                        <input type="text" name="f2" disabled={this.state.disable} value={this.state.f2} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f2}/><br />
+                        <input type="text" name="f3" disabled={this.state.disable} value={this.state.f3} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f3}/><br />
+                        <input type="text" name="f4" disabled={this.state.disable} value={this.state.f4} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f4}/>
+                    </Card.Text>
+                    <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
+                </Card.Body>
+            </Card>
+            <Card className='mar-btm'><Button>Add</Button></Card>
+            </Container>
         )
     }
 }
