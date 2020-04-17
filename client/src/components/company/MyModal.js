@@ -8,7 +8,7 @@ function MyModal(props) {
   
     return (
       <Container {...props}>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
+        <Button variant="secondary" onClick={() => setModalShow(true)}>
           View Resume
         </Button>
   

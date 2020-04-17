@@ -50,7 +50,7 @@ export default class Upload extends React.Component {
             <Form onSubmit={this.onFormSubmit} className="pad-all">
                 <Card style={{width: '100px'}}>
                     <FormControl type="file" name="myImage" onChange={this.onChange} />
-                    <Button type="submit" >Upload</Button>
+                    <Button variant="secondary" type="submit" >Upload</Button>
                 </Card>
             </Form>
         )

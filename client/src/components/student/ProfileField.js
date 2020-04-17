@@ -61,11 +61,11 @@ class ProfileField extends Component {
 
     render() {
         const ph = {
-            subtitle: this.props.eduComp ? "Add School" : "Add Company Name" ,
-            f1: this.props.eduComp ? "Add Degree" : "Add Title" ,
-            f2: "Add Location",
-            f3: this.props.eduComp ? "Add Major" : "Add Duration" ,
-            f4: this.props.eduComp ? "Add CGPA" : "Add Description"
+            subtitle: this.props.eduComp ? "School" : "Company Name" ,
+            f1: this.props.eduComp ? "Degree" : "Title" ,
+            f2: "Location",
+            f3: this.props.eduComp ? "Major" : "Duration" ,
+            f4: this.props.eduComp ? "CGPA" : "Description"
         }
         return (
             <Container>
@@ -97,8 +97,8 @@ class ProfileField extends Component {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            <Button onClick={this.handleClick} className="mar-rt mar-btm">{this.state.buttonName}</Button>
-            <Button className="mar-rt mar-btm">Add</Button>
+            <Button variant="secondary" onClick={this.handleClick} className="mar-rt mar-btm">{this.state.buttonName}</Button>
+            <Button variant="secondary" className="mar-rt mar-btm">Add</Button>
             </Container>
         )
     }

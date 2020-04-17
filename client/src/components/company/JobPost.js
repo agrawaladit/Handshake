@@ -43,7 +43,7 @@ export default class JobPost extends Component {
 
     render() {
         return (
-            <Form className="pad-all" onSubmit={this.onSubmit}>
+            <Form className="pad-all bg-primary" onSubmit={this.onSubmit}>
                 <Form.Group controlId="formTitle" className="m-sm-4">
                     <Form.Label>Title</Form.Label>
                     <Form.Control placeholder="Set Title" size="lg" name='title' onChange={this.onChange} value={this.state.title}/>
@@ -82,7 +82,7 @@ export default class JobPost extends Component {
                     </Form.Group>
                 </Form.Row>
 
-                <Button variant="primary" type="submit" className="m-sm-4">
+                <Button variant="secondary" type="submit" className="m-sm-4">
                     Submit
                 </Button>
             </Form>

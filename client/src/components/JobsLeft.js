@@ -9,10 +9,7 @@ export default class JobsLeft extends Component {
         return (
             <Container className="pad-all">
                 <Row>
-                    <Col xs={3}>
-                        <Card.Img variant="top" src={handshake} />
-                    </Col>
-                    <Col xs={9}>
+                    <Col >
                         <Card.Title>{job.title}</Card.Title>
                         <Card.Subtitle className="mb-2">{subtitle}</Card.Subtitle>
                         <Card.Subtitle className="mb-2 text-muted">{job.category}</Card.Subtitle>

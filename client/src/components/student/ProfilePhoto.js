@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Profile from '../../profile.png'
+import Profile from '../../profile.jpeg'
 import Upload from '../Upload'
 import { Link, withRouter } from 'react-router-dom'
 
@@ -46,12 +46,9 @@ class ProfilePhoto extends Component {
                         </p>
                         <div className="pad-btm">
                             <Link  to={`/messages/${'Ralph Lauren'}`} className="nav-link">
-                            <button className="btn btn-success" value={info.first_name}>Message</button>
+                            <button className="btn btn-danger" value={info.first_name}>Message</button>
                             </Link>
                         </div>
-                    </div>
-                    <div>
-                        <Upload id={info.id} mode='image'></Upload>
                     </div>
                 </div>
             </div>

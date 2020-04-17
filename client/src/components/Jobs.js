@@ -118,8 +118,8 @@ export default class Jobs extends Component {
         }
 
         var jobTop = this.state.mode ? (
-            <div class="mar-btm">
-                <nav class="navbar navbar-light bg-light">
+            <div class="mar-btm bg-dark">
+                <nav class="navbar navbar-light bg-dark">
                     <form class="form-inline col-md-3">
                         <input class="form-control w-100" type="search" placeholder="Company Name" value={this.state.search_company} onChange={this.updateSearch} name="search_company" />
                     </form>
@@ -154,7 +154,7 @@ export default class Jobs extends Component {
             <div>
                 {jobTop}
                 <div class="card border">
-                    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                    <Tab.Container defaultActiveKey="first" className="bg-dark">
                         <Row>
                             <Col sm={4}>
                                 <Nav variant="tabs" className="flex-column">

@@ -29,20 +29,20 @@ export default class JobsRight extends Component {
         console.log(this.props.job)
         var job = this.props.job
         return (
-            <div className="container-fluid pad-all">
-                <h2 className="font-weight-bold">{job.title}</h2>
-                <h3 className="font-weight-normal">{job.company.company}</h3>
+            <div className="pad-all">
+                <h2 className="font-weight-normal">{job.title}</h2>
+                <h3 className="font-weight-light">{job.company.company}</h3>
                 <div className="row pad-all">
-                    <p className="font-weight-light text-secondary mar-rt">{job.category}</p>
-                    <p className="font-weight-light text-secondary mar-rt">{job.location}</p>
-                    <p className="font-weight-light text-secondary mar-rt">{["Salary : " + job.salary + " $"]}</p>
-                    <p className="font-weight-light text-secondary mar-rt">{["Posted : " + job.date]}</p>
+                    <p className=" text-secondary mar-rt">{job.category}</p>
+                    <p className=" text-secondary mar-rt">{job.location}</p>
+                    <p className=" text-secondary mar-rt">{["Salary : " + job.salary + " $"]}</p>
+                    <p className=" text-secondary mar-rt">{["Posted : " + job.date]}</p>
                 </div>
-                <button type="button" class="btn btn-success mar-btm" onClick={this.onClick}>Apply</button>
+                <button type="button" class="btn-fail mar-btm" onClick={this.onClick}>Apply</button>
                 <br />
                 <br />
-                <h3 className="font-weight-bold">Job Description</h3>
-                <p className="font-weight-light">{job.description}</p>
+                <h3 >Job Description</h3>
+                <p >{job.description}</p>
 
             </div>
         )

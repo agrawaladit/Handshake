@@ -5,6 +5,10 @@ body {
   background-color: rgb(197, 197, 197);
 }
 
+.blue-bg{
+  background-color:rgb(21, 108, 223);
+}
+
 .no-mar {
   margin: 0;
   padding: 0;

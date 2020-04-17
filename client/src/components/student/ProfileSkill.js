@@ -45,7 +45,7 @@ class ProfileSkill extends Component {
             <div className='cotainer card col-md-12 mar-btm pad-all'>
                 {skills}
                 <div className="input-group mb-3">
-                    <input type="text" className="form-control" value={this.state.tempSkill} placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" onChange={this.handleChange}/>
+                    <input type="text" className="form-control" value={this.state.tempSkill} placeholder="Add Skills" aria-label="Recipient's username" aria-describedby="button-addon2" onChange={this.handleChange}/>
                     <div className="input-group-append">
                         <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={this.handleClick}>Add</button>
                     </div>

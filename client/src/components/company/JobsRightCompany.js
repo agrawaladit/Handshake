@@ -68,22 +68,16 @@ class JobsRightCompany extends Component {
                             <Card.Body>
                                 <Form.Label>Current Status : {application.status}</Form.Label>
                                 <Row>
-                                    <Col md={5} >
-                                        <Form.Control className="mar-top" as="select" name='category' onChange={this.onChange} id={application._id} value={this.state.category}>
+                                        <Form.Control className="mar-top mar-btm pad-all" as="select" name='category' onChange={this.onChange} id={application._id} value={this.state.category}>
                                             <option value="" hidden>Change Status</option>
                                             <option>Pending</option>
                                             <option>Reviewed</option>
                                             <option>Declined</option>
                                         </Form.Control>
-                                    </Col>
-                                    <Col md={4} >
                                         <MyModal id={application._id}/>
-                                    </Col>
-                                    <Col md={3}>
                                         <Link to={`/profile/${application.student}`} className="nav-link">
-                                            <Button variant="primary" >Go to Profile</Button>
+                                            <Button variant="secondary" >Go to Profile</Button>
                                         </Link>
-                                    </Col>
                                 </Row>
                             </Card.Body>
                         </Accordion.Collapse>

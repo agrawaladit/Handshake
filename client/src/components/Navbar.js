@@ -63,11 +63,6 @@ class Landing extends Component {
     const userLink = (
       <Nav>
         <Nav>
-          <Link to={`/messages/${'Rachel'}`} className="nav-link">
-            Messeges
-          </Link>
-        </Nav>
-        <Nav>
           <Link to="/jobs" className="nav-link">
             Jobs
           </Link>
@@ -85,6 +80,12 @@ class Landing extends Component {
         <Link to="/students" className="nav-link">
           Students
           </Link>
+        
+          <Nav>
+          <Link to={`/messages/${'Rachel'}`} className="nav-link">
+            Messeges
+          </Link>
+        </Nav>
         <Nav>
           <Link to="/profile" className="nav-link">
             Profile
@@ -114,22 +115,12 @@ class Landing extends Component {
 
 
     return (
-      <Navbar bg="primary" variant="dark" className="d-flex p-2 bd-highlight" >
+      <Navbar bg="dark" variant="dark" className="d-flex p-2 bd-highlight" >
         <Navbar>
           <Navbar.Brand href="/">
-            <img
-              src={Handshake}
-              width="200"
-              height="30"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
+            Handshake
           </Navbar.Brand>
         </Navbar>
-        <Form inline style={{ width: '45%' }}>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-light">Search</Button>
-        </Form>
         {localStorage.usertoken ? linkSwitch : loginRegLink}
       </Navbar>
     )

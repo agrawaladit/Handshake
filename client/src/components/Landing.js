@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
+import { Container } from "react-bootstrap";
 
 class Landing extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="jumbotron mt-5">
-          <div className="col-sm-8 mx-auto">
-            <h1 className="text-center">WELCOME</h1>
-          </div>
+      <Container style={{
+        backgroundColor: 'blue',
+      }}>
+        <div class="col-xs-6">
+          <h1 style= {{color: "white"}}> Get the Job done. </h1>
+          <br />
+          <br />
+          <h3 style= {{color: "white"}}> Students </h3>
+          <h5 style= {{color: "white"}}> Launch the next step in your career. </h5>
+          <br />
+          <h3 style= {{color: "white"}}> Employers </h3>
+          <h5 style= {{color: "white"}}> Hire the next generation of talent. </h5>
+          <br />
+          <br />
+          
         </div>
-      </div>
+      </Container>
     )
   }
 }

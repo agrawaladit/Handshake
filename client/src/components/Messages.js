@@ -50,8 +50,9 @@ class Messages extends Component {
                                 <Container className="pad-all">
                                     <Row>
                                         <Col>
-                                            <Card.Text>{"Student: " + conv.student}</Card.Text>
-                                            <Card.Text>{"Company: " + conv.company}</Card.Text>
+                                            <Card.Subtitle>{conv.student+"'s"}</Card.Subtitle>
+                                            <Card.Text>conversation with</Card.Text>
+                                            <Card.Subtitle>{conv.company}</Card.Subtitle>
                                         </Col>
                                     </Row>
                                 </Container>
@@ -72,13 +73,13 @@ class Messages extends Component {
                             <Tab.Pane eventKey={conv._id}>
                                 {
                                     conv.messages.map(message => {
-                                        return (<Container><Card className="pad-all">{message}</Card></Container>)
+                                        return (<Container className="pad-all">{message}</Container>)
                                     })}
                             </Tab.Pane>
                             <Card className="pad-all">
                                 <InputGroup>
                                     <FormControl
-                                        placeholder="Type Message"
+                                        placeholder="Message"
                                         aria-label="Type Message"
                                         aria-describedby="basic-addon2"
                                         id="mes" 
@@ -86,7 +87,7 @@ class Messages extends Component {
 
                                     />
                                     <InputGroup.Append>
-                                        <Button variant="outline-secondary"  onClick={this.send}>Button</Button>
+                                        <Button   onClick={this.send}>Send</Button>
                                     </InputGroup.Append>
                                 </InputGroup>
                             </Card>
@@ -104,12 +105,12 @@ class Messages extends Component {
                     <div class="card border">
                         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                             <Row>
-                                <Col sm={4}>
+                                <Col sm={6}>
                                     <Nav variant="tabs" className="flex-column">
                                         {messagesLeftValues}
                                     </Nav>
                                 </Col>
-                                <Col sm={8}>
+                                <Col sm={6}>
                                     <Tab.Content>
                                         {messagesRightValues}
                                     </Tab.Content>

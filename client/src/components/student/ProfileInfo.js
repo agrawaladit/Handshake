@@ -52,7 +52,7 @@ export default class ProfileInfo extends Component {
                 <input type="text" name="email" disabled={this.state.disable} value={this.state.email} className={this.state.inputClass} onChange={this.handleChange} placeholder="Enter Email"/>
                 <Card.Subtitle>Phone</Card.Subtitle>
                 <input type="text" name="phone" disabled={this.state.disable} value={this.state.phone} className={this.state.inputClass} onChange={this.handleChange} placeholder="Enter Phone"/>
-                <Button onClick={this.handleClick}>{this.state.buttonName}</Button>
+                <Button variant="secondary" onClick={this.handleClick}>{this.state.buttonName}</Button>
                 </Card.Body>
                 <Card.Text>Upload Resume</Card.Text>
                 <Upload id={this.state.id} mode='resume'></Upload>
