@@ -102,10 +102,10 @@ class Messages extends Component {
 
             return (
                 <div>
-                    <div class="card border">
+                    <div class="card border" className="bg-grey">
                         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                             <Row>
-                                <Col sm={6}>
+                                <Col sm={6}className="bg-white">
                                     <Nav variant="tabs" className="flex-column">
                                         {messagesLeftValues}
                                     </Nav>

@@ -9,7 +9,8 @@ export default class Upload extends React.Component {
         this.state = {
             file: null,
             id: '',
-            mode: ''
+            mode: '',
+            func: ''
         };
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -24,7 +25,7 @@ export default class Upload extends React.Component {
 
     onFormSubmit(e) {
         e.preventDefault();
-        
+        this.props.f()
         const formData = new FormData();
         formData.append('myImage', this.state.file);
         formData.append('id', this.state.id);
@@ -50,7 +51,7 @@ export default class Upload extends React.Component {
             <Form onSubmit={this.onFormSubmit} className="pad-all">
                 <Card style={{width: '100px'}}>
                     <FormControl type="file" name="myImage" onChange={this.onChange} />
-                    <Button variant="secondary" type="submit" >Upload</Button>
+                    <Button variant="secondary" type="submit" >Apply</Button>
                 </Card>
             </Form>
         )

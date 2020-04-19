@@ -9,7 +9,7 @@ const config = {
 
 export const register = newUser => {
   return axios
-    .post('users/register', qs.stringify({
+    .post('http://localhost:5000/users/register', qs.stringify({
       first_name: newUser.first_name,
       last_name: newUser.last_name,
       email: newUser.email,
@@ -23,7 +23,7 @@ export const register = newUser => {
 
 export const registerCompany = newUser => {
   return axios
-    .post('companies/register', qs.stringify({
+    .post('http://localhost:5000/companies/register', qs.stringify({
       company: newUser.company,
       email: newUser.email,
       password: newUser.password,
@@ -37,7 +37,7 @@ export const registerCompany = newUser => {
 export const login = user => {
   if (user.category === 'student') {
     return axios
-      .post('users/login', qs.stringify({
+      .post('http://localhost:5000/users/login', qs.stringify({
         email: user.email,
         password: user.password
       }), config)
@@ -51,7 +51,7 @@ export const login = user => {
   }
   if (user.category === 'employer') {
     return axios
-      .post('companies/login', qs.stringify({
+      .post('http://localhost:5000/companies/login', qs.stringify({
         email: user.email,
         password: user.password
       }), config)
@@ -68,7 +68,7 @@ export const login = user => {
 
 export const setEducation = user => {
   return axios
-    .post('users/education', qs.stringify({
+    .post('http://localhost:5000/users/education', qs.stringify({
       school: user.school,
       id: user.id,
       major: user.major,
@@ -110,7 +110,7 @@ export const getProfile = id => {
 
 export const setExperience = user => {
   return axios
-    .post('users/experience', qs.stringify({
+    .post('http://localhost:5000/users/experience', qs.stringify({
       company: user.company,
       title: user.title,
       id: user.id,
@@ -143,7 +143,7 @@ export const setExperience = user => {
 
 export const setCompany = company => {
   return axios
-    .post('companies/update', qs.stringify({
+    .post('http://localhost:5000/companies/update', qs.stringify({
       company: company.company,
       email: company.email,
       location: company.location,
@@ -160,7 +160,7 @@ export const setCompany = company => {
 
 export const getCompany = id => {
   return axios
-    .get('companies/profile?id=' + id)
+    .get('http://localhost:5000/companies/profile?id=' + id)
     .then(response => {
       return response.data
     })
@@ -171,7 +171,7 @@ export const getCompany = id => {
 
 export const getJobs = () => {
   return axios
-    .get('jobs')
+    .get('http://localhost:5000/jobs')
     .then(response => {
       return response.data
     })
@@ -182,7 +182,7 @@ export const getJobs = () => {
 
 export const setJobs = job => {
   return axios
-    .post('jobs', qs.stringify({
+    .post('http://localhost:5000/jobs', qs.stringify({
       company: job.company,
       title: job.title,
       description: job.description,
@@ -201,7 +201,7 @@ export const setJobs = job => {
 
 export const getApplications = () => {
   return axios
-    .get('applications')
+    .get('http://localhost:5000/applications')
     .then(response => {
       return response.data
     })
@@ -212,7 +212,7 @@ export const getApplications = () => {
 
 export const setApplications = app => {
   return axios
-    .post('applications', qs.stringify({
+    .post('http://localhost:5000/applications', qs.stringify({
       student_id: app.student_id,
       job_id: app.job_id,
       student_name: app.student_name,
@@ -228,7 +228,7 @@ export const setApplications = app => {
 
 export const setStatus = (id, status) => {
   return axios
-    .post('applications/update', qs.stringify({
+    .post('http://localhost:5000/applications/update', qs.stringify({
       id: id,
       status: status
     }), config)
@@ -242,7 +242,7 @@ export const setStatus = (id, status) => {
 
 export const setUserContact = user => {
   return axios
-    .post('users/contact', qs.stringify({
+    .post('http://localhost:5000/users/contact', qs.stringify({
       id: user.id,
       email: user.email,
       phone: user.phone
@@ -268,7 +268,7 @@ export const setUserContact = user => {
 
 export const getUsers = () => {
   return axios
-    .get('users')
+    .get('http://localhost:5000/users')
     .then(response => {
       return response.data
     })
@@ -280,7 +280,7 @@ export const getUsers = () => {
 
 export const getEvents = () => {
   return axios
-    .get('events')
+    .get('http://localhost:5000/events')
     .then(response => {
       return response.data
     })
@@ -291,7 +291,7 @@ export const getEvents = () => {
 
 export const setEvents = job => {
   return axios
-    .post('events', qs.stringify({
+    .post('http://localhost:5000/events', qs.stringify({
       company: job.company,
       name: job.name,
       description: job.description,
@@ -310,7 +310,7 @@ export const setEvents = job => {
 
 export const getRegistrations = () => {
   return axios
-    .get('registrations')
+    .get('http://localhost:5000/registrations')
     .then(response => {
       return response.data
     })
@@ -321,7 +321,7 @@ export const getRegistrations = () => {
 
 export const setRegistrations = reg => {
   return axios
-    .post('registrations', qs.stringify({
+    .post('http://localhost:5000/registrations', qs.stringify({
       student_id: reg.student_id,
       event_id: reg.event_id
     }), config)
@@ -335,7 +335,7 @@ export const setRegistrations = reg => {
 
 export const upload = reg => {
   return axios
-    .post('registrations', qs.stringify({
+    .post('http://localhost:5000/registrations', qs.stringify({
       student_id: reg.student_id,
       event_id: reg.event_id
     }), config)

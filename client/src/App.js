@@ -35,6 +35,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route exact path="/jobs" component={Jobs} />
             <Route exact path="/profilec" component={ProfileCompany} />
+            <Route exact path="/profilec/:id" component={ProfileCompany} />
             <Route exact path="/jobsc" component={JobsCompany} />
             <Route exact path="/applications" component={Applications} />
             <Route exact path="/eventsc" component={EventsCompany} />

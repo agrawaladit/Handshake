@@ -151,9 +151,9 @@ export default class Jobs extends Component {
         ) : (null)
 
         return (
-            <div>
+            <div >
                 {jobTop}
-                <div class="card border">
+                <div class="card border" className="bg-grey">
                     <Tab.Container defaultActiveKey="first" className="bg-dark">
                         <Row>
                             <Col sm={4}>

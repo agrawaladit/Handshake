@@ -68,10 +68,10 @@ class ProfileField extends Component {
             f4: this.props.eduComp ? "CGPA" : "Description"
         }
         return (
-            <Container>
+            <Container className="bg-grey">
             <Card style={{ width: '100%' }} className="mar-btm" >
                 <Card.Body>
-                    <Card.Title>{this.props.t1}</Card.Title>
+                    <Card.Title >{this.props.t1}</Card.Title>
                     <input type="text" name="subtitle" disabled={this.state.disable} value={this.state.subtitle} className={this.state.inputClass} onChange={this.handleChange} placeholder={ph.subtitle} />
                     <Card.Text>
                         <input type="text" name="f1" disabled={this.state.disable} value={this.state.f1} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f1}/><br />
@@ -85,7 +85,7 @@ class ProfileField extends Component {
             </Card>
             <Card style={{ width: '100%' }} className="mar-btm" >
                 <Card.Body>
-                    <Card.Title>{this.props.g1}</Card.Title>
+                    <Card.Title >{this.props.g1}</Card.Title>
                     <input type="text" name="g8" disabled={this.state.disable} value={this.state.g8} className={this.state.inputClass} onChange={this.handleChange} placeholder={ph.subtitle} />
                     <Card.Text>
                         <input type="text" name="g7" disabled={this.state.disable} value={this.state.g7} className={this.state.descClass} onChange={this.handleChange} placeholder={ph.f1}/><br />

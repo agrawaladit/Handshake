@@ -33,6 +33,17 @@ body {
 .bg-primary {
   background-color: #5fa2dd;
 }
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-grey {
+  background-color: #a3e5ff;
+}
+
+.bg-black {
+  background-color: #000000;
+}
 .bg-success, .bg-success a {
   color: #fff;
 }

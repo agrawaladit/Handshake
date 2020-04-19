@@ -4,6 +4,7 @@ import { Card, Button } from 'react-bootstrap'
 import Landscape from '../../landscape.jpeg'
 import { getCompany, setCompany } from '../UserFunctions'
 import Upload from '../Upload'
+import { connect } from 'react-redux'
 
 class ProfileCompany extends Component {
     constructor() {
@@ -24,18 +25,21 @@ class ProfileCompany extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        this.setState({
-            id: decoded._id,
-            company: decoded.company,
-            email: decoded.email,
-            location: decoded.location,
-        })
-        getCompany(decoded._id).then(response => {
+        let id = ''
+        if (this.props.id) {
+            id = this.props.id
+        }
+        else {
+            const token = localStorage.usertoken
+            const decoded = jwt_decode(token)
+            id = decoded._id
+        }
+        getCompany(id).then(response => {
             if (response) {
                 this.setState({
-                    info: response
+                    company: response.company,
+                    email: response.email,
+                    location: response.location,
                 })
             }
         })
@@ -94,4 +98,11 @@ class ProfileCompany extends Component {
     }
 }
 
-export default ProfileCompany
+const mapStateToProps = (state, ownProps) => {
+    let id = ownProps.match.params.id
+    return {
+        id: id
+    }
+}
+
+export default connect(mapStateToProps)(ProfileCompany)

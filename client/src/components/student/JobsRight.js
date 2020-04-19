@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import { setApplications } from '../UserFunctions'
+import Upload from '../Upload'
+import { Link, withRouter } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
 
-export default class JobsRight extends Component {
+class JobsRight extends Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     state = {
         student_id: '',
@@ -30,21 +37,36 @@ export default class JobsRight extends Component {
         var job = this.props.job
         return (
             <div className="pad-all">
+                <Container>
                 <h2 className="font-weight-normal">{job.title}</h2>
-                <h3 className="font-weight-light">{job.company.company}</h3>
+                </Container>
+                <Link to={`/profilec/${job.company._id}`} className="nav-link">
+                    <h3 className="font-weight-light">{job.company.company}</h3>
+                </Link>
                 <div className="row pad-all">
-                    <p className=" text-secondary mar-rt">{job.category}</p>
-                    <p className=" text-secondary mar-rt">{job.location}</p>
-                    <p className=" text-secondary mar-rt">{["Salary : " + job.salary + " $"]}</p>
-                    <p className=" text-secondary mar-rt">{["Posted : " + job.date]}</p>
+                <div>
+                    <div className="col pad-all">
+                        <p className=" text-secondary mar-rt">{job.category}</p>
+                        <p className=" text-secondary mar-rt">{job.location}</p>
+                        <p className=" text-secondary mar-rt">{["Salary : " + job.salary + " $"]}</p>
+                        <p className=" text-secondary mar-rt">{["Posted : " + job.date]}</p>
+                    </div>
+
                 </div>
-                <button type="button" class="btn-fail mar-btm" onClick={this.onClick}>Apply</button>
-                <br />
-                <br />
-                <h3 >Job Description</h3>
-                <p >{job.description}</p>
+                <div className="pad-all">
+                    <h5 >Job Description</h5>
+                    <p >{job.description}</p>
+                <br></br>
+                <br></br>
+                <Upload id={job._id} mode='image' f={this.onClick}></Upload>
+
+                </div>
+                
+                </div>
 
             </div>
         )
     }
 }
+
+export default withRouter(JobsRight)
